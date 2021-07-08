@@ -1,0 +1,20 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">MinAmount</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let loan of loans">
+        <td>{{ loan.id }}</td>
+        <td>{{ loan.title }}</td>
+        <td>{{ loan.minAmount }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

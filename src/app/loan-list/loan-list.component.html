@@ -1,20 +1,44 @@
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Title</th>
-        <th scope="col">MinAmount</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let loan of loans">
-        <td>{{ loan.id }}</td>
-        <td>{{ loan.title }}</td>
-        <td>{{ loan.minAmount }}</td>
-      </tr>
-      </tbody>
-    </table>
+  <h1>Request</h1>
+  <h3>Why do you need a loan?</h3>
+
+  <!--          test="toggleModal('{{ reason.description }}')"-->
+  <button *ngFor="let reason of loanReasons"
+          class="btn btn-default">{{ reason.title }}</button>
+
+  <h3>What type of loan would you like?</h3>
+  <form role="form" name="myform" novalidate>
+  <div class="form-group">
+    <tr *ngFor="let loan of loans">
+      <input type="radio" name="loanType" value="{{ loan.id }}" required ng-model="loanType"/>
+      {{ loan.title }} (minimum {{ loan.minAmount }} euro)<br/>
+    </tr>
   </div>
-</div>
+  <h3 id="amountToBorrow">How much would you like to borrow?</h3>
+  <div class="form-group">
+    Amount to borrow:
+    <input type="number" min="0" max="1000000" name="amount" placeholder="Amount in Euros"
+           ng-model="amount"/>
+<!--    <span ng-show="myform.amount.$dirty && amount<minLoan[loanType]" class="alert-danger">The desired amount is lower than the minimum amount ({{minLoan[loanType]}}) of the selected loan type. You may eventually choose another loan type.</span>-->
+  </div>
+
+
+<!--<div class="card my-5">-->
+<!--  <div class="card-body">-->
+<!--    <table class="table table-bordered table-striped">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th scope="col">#</th>-->
+<!--        <th scope="col">Title</th>-->
+<!--        <th scope="col">MinAmount</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr *ngFor="let loan of loans">-->
+<!--        <td>{{ loan.id }}</td>-->
+<!--        <td>{{ loan.title }}</td>-->
+<!--        <td>{{ loan.minAmount }}</td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--</div>-->

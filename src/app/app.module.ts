@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoanListComponent } from './loan-list/loan-list.component';
 import { LoanService } from './service/loan.service';
+import { LoanReasonsService } from './service/loanreasons.service';
 
 
 @NgModule({
@@ -19,7 +20,10 @@ import { LoanService } from './service/loan.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [LoanService],
+  providers: [
+    LoanService,
+    LoanReasonsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

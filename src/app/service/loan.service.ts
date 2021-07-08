@@ -9,7 +9,7 @@ export class LoanService {
   private loansUrl: string;
 
   constructor(private http: HttpClient) {
-    this.loansUrl = 'http://localhost:8080/loans/';
+    this.loansUrl = 'https://loanapplication-be.azurewebsites.net/loans/';
   }
 
   public findAll(): Observable<Loan[]> {

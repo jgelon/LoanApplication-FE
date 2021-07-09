@@ -3,12 +3,26 @@
 <table>
   <thead>
   <tr>
-    <th>ID</th>
+    <th>Id</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Address</th>
+    <th>Zipcode</th>
+    <th>City</th>
+    <th>Loantype</th>
+    <th>Amount</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let request of loanRequests">
     <td>{{ request.id }}</td>
+    <td>{{ request.firstName }}</td>
+    <td>{{ request.lastName }}</td>
+    <td>{{ request.address }}</td>
+    <td>{{ request.zipcode }}</td>
+    <td>{{ request.city }}</td>
+    <td>{{ request.loanType }}</td>
+    <td>{{ request.amount }}</td>
   </tr>
   </tbody>
 </table>

@@ -1,0 +1,22 @@
+<h1>Request</h1>
+<h3>Why do you need a loan?</h3>
+
+<!--          test="toggleModal('{{ reason.description }}')"-->
+<button *ngFor="let reason of loanReasons"
+        class="btn btn-default">{{ reason.title }}</button>
+
+<h3>What type of loan would you like?</h3>
+<form role="form" name="myform" novalidate>
+  <div class="form-group">
+    <tr *ngFor="let loanType of loanTypes">
+      <input type="radio" name="loanType" value="{{ loanType.id }}" required ng-model="loanType"/>
+      {{ loanType.title }} (minimum {{ loanType.minAmount }} euro)<br/>
+    </tr>
+  </div>
+  <h3 id="amountToBorrow">How much would you like to borrow?</h3>
+  <div class="form-group">
+    Amount to borrow:
+    <input type="number" min="0" max="1000000" name="amount" placeholder="Amount in Euros"
+           ng-model="amount"/>
+    <!--    <span ng-show="myform.amount.$dirty && amount<minLoan[loanType]" class="alert-danger">The desired amount is lower than the minimum amount ({{minLoan[loanType]}}) of the selected loan type. You may eventually choose another loan type.</span>-->
+  </div>

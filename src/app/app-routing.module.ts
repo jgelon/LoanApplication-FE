@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoanListComponent } from './loan-list/loan-list.component';
+import { LoantypeSelectionComponent } from './loantype-selection/loantype-selection.component';
+import { RequestListComponent } from './request-list/request-list.component';
 
 const routes: Routes = [
-  { path: '', component: LoanListComponent },
-  { path: 'loans', component: LoanListComponent },
+  { path: 'request', component: LoantypeSelectionComponent },
+  { path: 'list', component: RequestListComponent },
 ];
 
 @NgModule({

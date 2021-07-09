@@ -4,15 +4,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { LoanListComponent } from './loan-list/loan-list.component';
-import { LoanService } from './service/loan.service';
+import { LoanTypesService } from './service/loantypes.service';
 import { LoanReasonsService } from './service/loanreasons.service';
+import { LoanRequestService } from './service/loanrequests.service';
+import { RequestListComponent } from './request-list/request-list.component';
+import { LoantypeSelectionComponent } from './loantype-selection/loantype-selection.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoanListComponent
+    RequestListComponent,
+    LoantypeSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -21,8 +24,9 @@ import { LoanReasonsService } from './service/loanreasons.service';
     FormsModule
   ],
   providers: [
-    LoanService,
-    LoanReasonsService
+    LoanTypesService,
+    LoanReasonsService,
+    LoanRequestService
   ],
   bootstrap: [AppComponent]
 })

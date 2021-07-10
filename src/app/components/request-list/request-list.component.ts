@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoanRequest } from '../model/loanrequest';
-import { LoanRequestService } from '../service/loanrequests.service';
+import { LoanRequest } from '../../model/loanrequest';
+import { LoanRequestService } from '../../service/loanrequests.service';
 
 @Component({
   selector: 'app-request-list',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoanType } from '../model/loantype';
-import { LoanRequest } from '../model/loanrequest';
-import { LoanTypesService } from '../service/loantypes.service';
+import { LoanType } from '../../model/loantype';
+import { LoanRequest } from '../../model/loanrequest';
+import { LoanTypesService } from '../../service/loantypes.service';
 
 @Component({
   selector: 'app-request-loan',

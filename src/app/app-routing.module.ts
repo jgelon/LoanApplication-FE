@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RequestLoanComponent } from './request-loan/request-loan.component';
-import { RequestListComponent } from './request-list/request-list.component';
+import { RequestLoanComponent } from './components/request-loan/request-loan.component';
+import { RequestListComponent } from './components/request-list/request-list.component';
 
 const routes: Routes = [
   { path: 'request', component: RequestLoanComponent },

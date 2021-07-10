@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoanTypesService } from './service/loantypes.service';
 import { LoanReasonsService } from './service/loanreasons.service';
 import { LoanRequestService } from './service/loanrequests.service';
-import { RequestListComponent } from './request-list/request-list.component';
-import { LoantypeSelectionComponent } from './loantype-selection/loantype-selection.component';
-import { RequestLoanComponent } from './request-loan/request-loan.component';
+import { RequestListComponent } from './components/request-list/request-list.component';
+import { LoantypeSelectionComponent } from './components/loantype-selection/loantype-selection.component';
+import { RequestLoanComponent } from './components/request-loan/request-loan.component';
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import { RequestLoanComponent } from './request-loan/request-loan.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule
   ],
   providers: [

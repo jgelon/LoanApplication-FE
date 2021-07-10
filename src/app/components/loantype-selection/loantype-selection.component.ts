@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { LoanReason } from '../model/loanreason';
-import { LoanReasonsService } from '../service/loanreasons.service';
+import { LoanReason } from '../../model/loanreason';
+import { LoanReasonsService } from '../../service/loanreasons.service';
 
 @Component({
   selector: 'app-loantype-selection',

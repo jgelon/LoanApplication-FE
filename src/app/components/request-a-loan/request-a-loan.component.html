@@ -16,12 +16,21 @@
         <input matInput placeholder="Name" formControlName="name" required>
       </mat-form-field>
       
+      <br/>
       <mat-form-field>
         <mat-label>Loan Type</mat-label>
         <mat-radio-group aria-label="Select an option">
-            <mat-radio-button *ngFor="let type of loanTypes" [value]="type" formControlName="loanType">{{ type.title }} (minimum {{ type.minAmount | number }} euro)</mat-radio-button>
+            <mat-radio-button value="1">Option 1</mat-radio-button>
+            <mat-radio-button value="2">Option 2</mat-radio-button>
+          </mat-radio-group>
+      </mat-form-field>       
+      <!-- <mat-form-field>
+        <mat-label>Loan Type</mat-label>
+        <mat-radio-group required>
+            <!-- <mat-radio-button *ngFor="let type of loanTypes">{{ type.title }}</mat-radio-button> -->
+            <!-- <mat-radio-button *ngFor="let type of loanTypes" formControlName="loanType" value="{{ type.id }}">{{ type.title }} (minimum {{ type.minAmount | number }} euro)</mat-radio-button>
         </mat-radio-group>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <br/>
       <mat-form-field>

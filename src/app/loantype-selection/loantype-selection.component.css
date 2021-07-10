@@ -1,0 +1,10 @@
+ul.loanReasonButtons {
+  overflow-x:hidden;
+  white-space:nowrap;
+  width: 100%;
+}
+
+ul.loanReasonButtons li {
+  display:inline;
+  padding-left: 10px;
+}

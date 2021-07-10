@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoanType } from '../model/loantype';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { LoanReason } from '../model/loanreason';
-import { LoanTypesService } from '../service/loantypes.service';
 import { LoanReasonsService } from '../service/loanreasons.service';
 
 @Component({
@@ -11,20 +10,34 @@ import { LoanReasonsService } from '../service/loanreasons.service';
 })
 export class LoantypeSelectionComponent implements OnInit {
 
-   loanTypes: LoanType[];
    loanReasons: LoanReason[];
+   closeModal: string;
 
-   constructor(private loanTypesService: LoanTypesService, private loanReasonsService: LoanReasonsService) {
+   constructor(private loanReasonsService: LoanReasonsService, private modalService: NgbModal) {
    }
 
      ngOnInit() {
-       this.loanTypesService.findAll().subscribe(data => {
-         this.loanTypes = data;
-       });
-
        this.loanReasonsService.findAll().subscribe(data => {
          this.loanReasons = data;
        });
      }
 
+
+     triggerModal(content : any) {
+         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+           this.closeModal = `Closed with: ${res}`;
+         }, (res) => {
+           this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+         });
+     }
+
+     private getDismissReason(reason: any): string {
+       if (reason === ModalDismissReasons.ESC) {
+         return 'by pressing ESC';
+       } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+         return 'by clicking on a backdrop';
+       } else {
+         return  `with: ${reason}`;
+       }
+     }
 }

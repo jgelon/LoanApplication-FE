@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RequestLoanComponent } from './components/request-loan/request-loan.component';
+import { RequestALoanComponent } from './components/request-a-loan/request-a-loan.component';
 import { RequestListComponent } from './components/request-list/request-list.component';
 
 const routes: Routes = [
-  { path: 'request', component: RequestLoanComponent },
+  { path: 'request', component: RequestALoanComponent },
   { path: 'list', component: RequestListComponent },
 ];
 

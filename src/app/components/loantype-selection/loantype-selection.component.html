@@ -1,8 +1,7 @@
-<h1>Request</h1>
 <h3>Why do you need a loan?</h3>
 <ul class="loanReasonButtons">
   <li *ngFor="let reason of loanReasons">
-    <button class="btn btn-info" (click)="triggerModal(modalData)">{{ reason.title }}</button>
+    <button mat-flat-button (click)="triggerModal(modalData)">{{ reason.title }}</button>
     <ng-template #modalData let-modal>
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">{{ reason.title }}</h4>

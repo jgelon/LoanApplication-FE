@@ -4,13 +4,13 @@
 <form role="form" name="myform">
   <div class="form-group">
     <div *ngFor="let type of loanTypes">
-      {{ type | json }}
       <input type=radio
-             value="{{ type }}"
+             [value]="type"
              required
+             id="type-{{ type.id }}"
              name="loanType"
              [(ngModel)]="model.loanType">
-      <label>{{ type.title }} (minimum {{ type.minAmount | number }} euro)</label>
+      <label for="type-{{ type.id }}">{{ type.title }} (minimum {{ type.minAmount | number }} euro)</label>
     </div>
   </div>
 
@@ -22,17 +22,15 @@
            placeholder="Amount in Euros"
            required
            name="amount"
-           [(ngModel)]="model.amount"
-           #amount="ngModel">
-
-
-<!--    <span ng-show="myform.amount.$dirty && amount < loanTypes[loanType].minamount" class="alert-danger">-->
-<!--      The desired amount is lower than the minimum amount ({{loanTypes[loanType].title}}) of the selected loan type. You may eventually choose another loan type.-->
-<!--    </span>-->
-
-
-
-    <span>{{ model.loanType.title }}</span>
-    <span>{{ model.amount }}</span>
+           [(ngModel)]="model.amount">
   </div>
+
+  <span [hidden]="model.loanType==null || model.amount==null || model.amount > model.loanType.minAmount" class="alert-danger">
+      The desired amount is lower than the minimum amount ({{model.loanType.title}}) of the selected loan type. You may eventually choose another loan type.
+  </span>
+
+
+  <button class="btn btn-default" [disabled]="model.loanType==null || model.amount==null || model.amount < model.loanType.minAmount"
+          ng-click="submit()" id="submitButton1">Continue to explanation
+  </button>
 </form>

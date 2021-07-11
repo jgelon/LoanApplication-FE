@@ -1,6 +1,9 @@
 
+<div [hidden]="!submitted">
+  Your request has been submitted.
+</div>
  
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper [linear]="isLinear" #stepper [hidden]="submitted">
   <mat-step [stepControl]="firstFormGroup">
       
     <app-loantype-selection></app-loantype-selection>

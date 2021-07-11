@@ -10,6 +10,7 @@ import { LoanRequestService } from '../../service/loanrequests.service';
 export class RequestListComponent implements OnInit {
 
   loanRequests: LoanRequest[];
+  displayedColumns: string[] = ['id', 'fullname', 'address', 'type', 'amount'];
 
   constructor(
     private _loanRequestService: LoanRequestService

@@ -2,29 +2,32 @@
 
 <button mat-button (click)="generate()">Generate a requester</button>
 
-<table>
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Address</th>
-    <th>Zipcode</th>
-    <th>City</th>
-    <th>Loantype</th>
-    <th>Amount</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let request of loanRequests">
-    <td>{{ request.id }}</td>
-    <td>{{ request.firstName }}</td>
-    <td>{{ request.lastName }}</td>
-    <td>{{ request.address }}</td>
-    <td>{{ request.zipcode }}</td>
-    <td>{{ request.city }}</td>
-    <td>{{ request.loanType.title }}</td>
-    <td>{{ request.amount | currency }}</td>
-  </tr>
-  </tbody>
+<table mat-table [dataSource]="loanRequests">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fullname">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.lastName}}, {{element.firstName}}  </td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef> Address </th>
+    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> Loan Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.loanType.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <td mat-cell *matCellDef="let element"> {{element.amount | currency}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

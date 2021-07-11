@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -44,6 +45,7 @@ import { CurrencyProxyPipe } from './pipes/currency-proxy.pipe'
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableModule,
     NgbModule,
     BrowserAnimationsModule
   ],

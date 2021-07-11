@@ -7,71 +7,172 @@
 
     <hr />
 
-    <h3>Select desired loan type</h3>
+    <h3>Request loan</h3>
     
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Loan Type</ng-template>
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Name" formControlName="name" required>
-      </mat-form-field>
+      <ng-template matStepLabel>Loan Type</ng-template>      
       
+      <label id="type-radio-group-label">Select desired loan type</label>
+      <mat-radio-group
+        aria-labelledby="type-radio-group-label"
+        class="type-radio-group"
+        formControlName="loanType">
+        <mat-radio-button class="type-radio-button" *ngFor="let type of loanTypes" [value]="type">
+          {{ type.title }} (minimum {{ type.minAmount | currency }})
+        </mat-radio-button>
+      </mat-radio-group>
+        
       <br/>
       <mat-form-field>
-        <mat-label>Loan Type</mat-label>
-        <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">Option 1</mat-radio-button>
-            <mat-radio-button value="2">Option 2</mat-radio-button>
-          </mat-radio-group>
-      </mat-form-field>       
-      <!-- <mat-form-field>
-        <mat-label>Loan Type</mat-label>
-        <mat-radio-group required>
-            <!-- <mat-radio-button *ngFor="let type of loanTypes">{{ type.title }}</mat-radio-button> -->
-            <!-- <mat-radio-button *ngFor="let type of loanTypes" formControlName="loanType" value="{{ type.id }}">{{ type.title }} (minimum {{ type.minAmount | number }} euro)</mat-radio-button>
-        </mat-radio-group>
-      </mat-form-field> -->
-
-      <br/>
-      <mat-form-field>
-        <mat-label>Description</mat-label>
-        <textarea matInput placeholder="Description" formControlName="description" required>
-        </textarea>
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" min="0" max="10000000" placeholder="Amount" formControlName="amount" required>
       </mat-form-field>
+      <span [hidden]="loanType == '' || amount == '' || amount > loanType.minAmount" class="alert-danger">
+        The desired amount is lower than the minimum amount ({{loanType.title}}) of the selected loan type. You may eventually choose another loan type.
+      </span>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
+
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Amount & Stock</ng-template>
+      <ng-template matStepLabel>Acknowledgement</ng-template>
+
+      <mat-list>
+        <mat-list-item> <strong>Loantype:</strong> <span id="loanType">{{ loanType.title }}</span></mat-list-item>
+        <mat-list-item> <strong>Amount:</strong> <span id="loanAmount">{{ amount | currency }}</span></mat-list-item>
+      </mat-list>
+
+      <mat-radio-group
+        aria-labelledby="knowledge-radio-group-label"
+        class="knowledge-radio-group"
+        formControlName="knowledge">
+        <mat-radio-button class="knowledge-radio-button" value="yes">
+          I have knowledge of and experience with borrowing.
+        </mat-radio-button>
+        <mat-radio-button class="knowledge-radio-button" value="no">
+          I do not have knowledge of and experience with borrowing.
+        </mat-radio-button>
+      </mat-radio-group>
+      <br/>
+      <div [hidden]="this.secondFormGroup.value.knowledge != 'no'">
+        Borrowing money is not always a good idea. Make sure to inform yourself on the conditions and interest rates
+        which apply to the loan. Make note that the provided interest rate might apply for only a limited period of
+        the loan. There are many other conditions to look into when automating this test. Take your time to think
+        about this offer and ask questions whenever something is unclear.
+        <p></p>
+    </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext [disabled]="this.secondFormGroup.value.knowledge != 'yes'">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Personal details</ng-template>
       <mat-form-field>
-        <mat-label>Amount</mat-label>
-        <input matInput placeholder="Amount" formControlName="amount" required>
+        <mat-label>Gender</mat-label>
+        <mat-select required formControlName="gender">
+          <mat-option *ngFor="let gen of genders" [value]="gen">
+            {{gen}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <br/>
       <mat-form-field>
-        <mat-label>Stock</mat-label>
-        <input matInput placeholder="Stock" formControlName="stock" required>
+        <mat-label>Firstname</mat-label>
+        <input matInput placeholder="Firstname" formControlName="firstname" required>
       </mat-form-field>
       <br/>
+      <mat-form-field>
+        <mat-label>Lastname</mat-label>
+        <input matInput placeholder="Lastname" formControlName="lastname" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>Date of birth</mat-label>
+        <input matInput [matDatepicker]="dob" formControlName="dob" required>
+        <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+        <mat-datepicker #dob></mat-datepicker>
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="Address" formControlName="address" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>Zipcode</mat-label>
+        <input matInput placeholder="Zipcode" formControlName="zipcode" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput placeholder="City" formControlName="city" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>Maritial status</mat-label>
+        <mat-select required formControlName="maritialstatus">
+          <mat-option *ngFor="let state of maritialstates" [value]="state">
+            {{state}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>Net year income</mat-label>
+        <input matInput type="number" placeholder="income" formControlName="income" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>Income type</mat-label>
+        <mat-select required formControlName="incometype">
+          <mat-option *ngFor="let type of incometypes" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br/>
+      <!--
+        TODO: Add a file upload to show how to automate that
+        MatInput does not support type=file
+      <mat-form-field>
+        <mat-label>Payment slip</mat-label>
+        <input matInput type="file" placeholder="paymentslip" formControlName="paymentslip" required>
+      </mat-form-field> -->
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
-      </div>
+      </div>      
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <ng-template matStepLabel>Verification</ng-template>
+    <h3>Verify your information</h3>
   
     <mat-list>
-	 <mat-list-item> <strong>Name:</strong> {{ this.firstFormGroup.value.name }}</mat-list-item>
-	 <mat-list-item> <strong>Description:</strong> {{ this.firstFormGroup.value.description }}</mat-list-item>
-	 <mat-list-item> <strong>Amount:</strong> {{ this.secondFormGroup.value.amount }}</mat-list-item>
-	 <mat-list-item> <strong>Stock:</strong> {{ this.secondFormGroup.value.stock }}</mat-list-item>
-	</mat-list>
+      <mat-list-item> <strong>Loantype:</strong> {{ loanType.title }}</mat-list-item>
+      <mat-list-item> <strong>Amount:</strong> {{ amount | currency }}</mat-list-item>
+
+      <mat-list-item> <strong>Acknowledgement:</strong> {{ this.secondFormGroup.value.knowledge }}</mat-list-item>
+      
+      <mat-list-item> <strong>Gender:</strong> {{ this.thirdFormGroup.value.gender }}</mat-list-item>
+      <mat-list-item> <strong>Firstname:</strong> {{ this.thirdFormGroup.value.firstname }}</mat-list-item>
+      <mat-list-item> <strong>Lastname:</strong> {{ this.thirdFormGroup.value.lastname }}</mat-list-item>
+      <mat-list-item> <strong>Date of birth:</strong> {{ this.thirdFormGroup.value.dob }}</mat-list-item>
+      <mat-list-item> <strong>Address:</strong> {{ this.thirdFormGroup.value.address }}</mat-list-item>
+      <mat-list-item> <strong>Zipcode:</strong> {{ this.thirdFormGroup.value.zipcode }}</mat-list-item>
+      <mat-list-item> <strong>City:</strong> {{ this.thirdFormGroup.value.city }}</mat-list-item>
+      <mat-list-item> <strong>Income:</strong> {{ this.thirdFormGroup.value.income }}</mat-list-item>
+      <mat-list-item> <strong>Maritialstatus:</strong> {{ this.thirdFormGroup.value.maritialstatus }}</mat-list-item>
+      <mat-list-item> <strong>Incometype:</strong> {{ this.thirdFormGroup.value.incometype }}</mat-list-item>
+      
+	  </mat-list>
   
     <div>
       <button mat-button matStepperPrevious>Back</button>

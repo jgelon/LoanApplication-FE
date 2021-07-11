@@ -1,12 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, DEFAULT_CURRENCY_CODE } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatListModule} from '@angular/material/list';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +21,7 @@ import { RequestListComponent } from './components/request-list/request-list.com
 import { LoantypeSelectionComponent } from './components/loantype-selection/loantype-selection.component';
 import { RequestLoanComponent } from './components/request-loan/request-loan.component';
 import { RequestALoanComponent } from './components/request-a-loan/request-a-loan.component';
-
+import { CurrencyProxyPipe } from './pipes/currency-proxy.pipe'
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { RequestALoanComponent } from './components/request-a-loan/request-a-loa
     RequestListComponent,
     LoantypeSelectionComponent,
     RequestLoanComponent,
-    RequestALoanComponent
+    RequestALoanComponent,
+    CurrencyProxyPipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,10 @@ import { RequestALoanComponent } from './components/request-a-loan/request-a-loa
     MatInputModule,
     MatButtonModule,
     MatListModule,
+    MatSelectModule,
     MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgbModule,
     BrowserAnimationsModule
   ],

@@ -19,7 +19,6 @@ import { LoanReasonsService } from './service/loanreasons.service';
 import { LoanRequestService } from './service/loanrequests.service';
 import { RequestListComponent } from './components/request-list/request-list.component';
 import { LoantypeSelectionComponent } from './components/loantype-selection/loantype-selection.component';
-import { RequestLoanComponent } from './components/request-loan/request-loan.component';
 import { RequestALoanComponent } from './components/request-a-loan/request-a-loan.component';
 import { CurrencyProxyPipe } from './pipes/currency-proxy.pipe'
 
@@ -28,7 +27,6 @@ import { CurrencyProxyPipe } from './pipes/currency-proxy.pipe'
     AppComponent,
     RequestListComponent,
     LoantypeSelectionComponent,
-    RequestLoanComponent,
     RequestALoanComponent,
     CurrencyProxyPipe
   ],

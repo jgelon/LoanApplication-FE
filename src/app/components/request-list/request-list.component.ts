@@ -11,12 +11,22 @@ export class RequestListComponent implements OnInit {
 
   loanRequests: LoanRequest[];
 
-  constructor(private loanRequestService: LoanRequestService) { }
+  constructor(
+    private _loanRequestService: LoanRequestService
+  ) { }
 
   ngOnInit(): void {
-      this.loanRequestService.findAll().subscribe(data => {
+      this._loanRequestService.findAll().subscribe(data => {
         this.loanRequests = data;
       });
+  }
+
+  generate() {
+    this._loanRequestService.generate().subscribe(data => {
+      data.forEach(element => {
+        this.loanRequests.push(element);
+      });      
+    });
   }
 
 }

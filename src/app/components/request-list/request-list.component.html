@@ -1,5 +1,7 @@
 <h3>Open Loan Requests</h3>
 
+<button mat-button (click)="generate()">Generate a requester</button>
+
 <table>
   <thead>
   <tr>
@@ -21,8 +23,8 @@
     <td>{{ request.address }}</td>
     <td>{{ request.zipcode }}</td>
     <td>{{ request.city }}</td>
-    <td>{{ request.loanType }}</td>
-    <td>{{ request.amount }}</td>
+    <td>{{ request.loanType.title }}</td>
+    <td>{{ request.amount | currency }}</td>
   </tr>
   </tbody>
 </table>

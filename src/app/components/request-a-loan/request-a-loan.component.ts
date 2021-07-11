@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { LoanRequest } from 'src/app/model/loanrequest';
 import { LoanType } from 'src/app/model/loantype';
+import { LoanRequestService } from 'src/app/service/loanrequests.service';
 import { LoanTypesService } from 'src/app/service/loantypes.service';
 
 @Component({
@@ -19,7 +21,13 @@ export class RequestALoanComponent implements OnInit {
   incometypes: string[] = ['Temporary contract','Permanent contract','Self-employed','No income'];
   maritialstates: string[] = ['Single', 'Married', 'Registered partners', 'Living together'];
 
-  constructor(private _formBuilder: FormBuilder, private _loanTypesService: LoanTypesService) {}
+  submitted: boolean = false;
+
+  constructor(
+    private _formBuilder: FormBuilder, 
+    private _loanTypesService: LoanTypesService,
+    private _loanRequestsService: LoanRequestService
+  ) {}
   
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -54,9 +62,23 @@ export class RequestALoanComponent implements OnInit {
   }
   
   submit(){
-      console.log(this.firstFormGroup.value);
-      console.log(this.secondFormGroup.value);
-      console.log(this.thirdFormGroup.value);
+      let loanRequest = new LoanRequest();
+      loanRequest.gender = this.thirdFormGroup.value.gender;
+      loanRequest.firstName = this.thirdFormGroup.value.firstName;
+      loanRequest.lastName = this.thirdFormGroup.value.lastName;
+      loanRequest.address = this.thirdFormGroup.value.address;
+      loanRequest.zipcode = this.thirdFormGroup.value.zipcode;
+      loanRequest.city = this.thirdFormGroup.value.city;
+      loanRequest.dob = this.thirdFormGroup.value.dob;
+      loanRequest.income = this.thirdFormGroup.value.income;
+      loanRequest.incomeType = this.thirdFormGroup.value.incomeType;
+      loanRequest.maritialStatus = this.thirdFormGroup.value.maritialStatus;
+      loanRequest.loanType = this.firstFormGroup.value.loanType;
+      loanRequest.amount = this.firstFormGroup.value.amount;
+      this._loanRequestsService.newRequest(loanRequest).subscribe(data => {
+        console.log(data);
+        console.log("Submitted");
+        // this.submitted = true;
+      });
   }
-
 }

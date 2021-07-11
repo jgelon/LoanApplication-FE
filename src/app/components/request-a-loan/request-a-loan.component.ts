@@ -22,6 +22,7 @@ export class RequestALoanComponent implements OnInit {
   maritialstates: string[] = ['Single', 'Married', 'Registered partners', 'Living together'];
 
   submitted: boolean = false;
+  requestId: number;
 
   constructor(
     private _formBuilder: FormBuilder, 
@@ -77,8 +78,8 @@ export class RequestALoanComponent implements OnInit {
       loanRequest.amount = this.firstFormGroup.value.amount;
       this._loanRequestsService.newRequest(loanRequest).subscribe(data => {
         console.log(data);
-        console.log("Submitted");
-        // this.submitted = true;
+        this.submitted = true;
+        this.requestId = data.id;
       });
   }
 }

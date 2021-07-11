@@ -1,6 +1,6 @@
 
 <div [hidden]="!submitted">
-  Your request has been submitted.
+  Your request has been submitted and is filled under <span id="requestId">#{{ requestId }}</span>
 </div>
  
 <mat-horizontal-stepper [linear]="isLinear" #stepper [hidden]="submitted">

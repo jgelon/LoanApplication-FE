@@ -22,6 +22,7 @@ import { RequestListComponent } from './components/request-list/request-list.com
 import { LoantypeSelectionComponent } from './components/loantype-selection/loantype-selection.component';
 import { RequestALoanComponent } from './components/request-a-loan/request-a-loan.component';
 import { CurrencyProxyPipe } from './pipes/currency-proxy.pipe'
+import { ConfigService } from "./service/config.service";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { CurrencyProxyPipe } from './pipes/currency-proxy.pipe'
   providers: [
     LoanTypesService,
     LoanReasonsService,
-    LoanRequestService
+    LoanRequestService,
+    ConfigService
   ],
   bootstrap: [AppComponent]
 })

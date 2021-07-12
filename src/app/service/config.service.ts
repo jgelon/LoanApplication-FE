@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {BASE_URL} from "../constants/constants";
-import {Observable} from "rxjs/Observable";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { BASE_URL } from '../constants/constants';
 
 @Injectable()
 export class ConfigService {

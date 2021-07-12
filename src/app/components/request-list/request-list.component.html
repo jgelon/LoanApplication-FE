@@ -1,8 +1,8 @@
 <h3>Open Loan Requests</h3>
 
-<button mat-button (click)="generate()">Generate a requester</button>
+<button mat-button (click)="generate()">Generate requesters</button>
 
-<table mat-table [dataSource]="loanRequests">
+<table mat-table [dataSource]="loanRequests" width="100%">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> # </th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>

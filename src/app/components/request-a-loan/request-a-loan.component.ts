@@ -35,13 +35,13 @@ export class RequestALoanComponent implements OnInit {
   ngOnInit() {
     this._configService.genders().subscribe(data => {
       this.genders = data;
-    })
+    });
     this._configService.maritalstatus().subscribe(data => {
       this.maritalStates = data;
-    })
+    });
     this._configService.incomeTypes().subscribe(data => {
       this.incomeTypes = data;
-    })
+    });
 
     this.firstFormGroup = this._formBuilder.group({
       loanType: ['', Validators.required],
@@ -59,7 +59,7 @@ export class RequestALoanComponent implements OnInit {
       zipcode: ['', Validators.required],
       city: ['', Validators.required],
       income: ['', Validators.required],
-      maritalstatus: ['', Validators.required],
+      maritalStatus: ['', Validators.required],
       incometype: ['', Validators.required]
     });
     this._loanTypesService.findAll().subscribe(data => {

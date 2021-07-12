@@ -31,3 +31,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## TOOLS USED:
 Material Designs: https://material.angular.io/components/button/overview
 Stepper: https://www.itsolutionstuff.com/post/angular-multi-step-reactive-form-exampleexample.html
+Bootstrap Design: https://github.com/startbootstrap/startbootstrap-business-frontpage

@@ -1,7 +1,8 @@
 <h3>Why do you need a loan?</h3>
-<ul class="loanReasonButtons">
-  <li *ngFor="let reason of loanReasons">
-    <button mat-flat-button (click)="triggerModal(modalData)">{{ reason.title }}</button>
+
+<div class="d-grid gap-3 d-md-flex">
+  <div *ngFor="let reason of loanReasons" class="justify-content-sm-center">
+    <button mat-stroked-button (click)="triggerModal(modalData)">{{ reason.title }}</button>
     <ng-template #modalData let-modal>
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">{{ reason.title }}</h4>
@@ -13,5 +14,5 @@
         <p>{{ reason.description }}</p>
       </div>
     </ng-template>
-  </li>
-</ul>
+  </div>
+</div>

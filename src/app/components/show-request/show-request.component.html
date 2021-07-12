@@ -1,22 +1,25 @@
 
 <div *ngIf="loanRequest$ | async as loanRequest">
   <h1>Loan Request #{{ loanRequest.id }}</h1>
-  <mat-list>
-    <mat-list-item> <strong>Loantype:</strong> {{ loanRequest.loanType.title }}</mat-list-item>
-    <mat-list-item> <strong>Amount:</strong> {{ loanRequest.amount | currency }}</mat-list-item>
 
-    <mat-list-item> <strong>Gender:</strong> {{ loanRequest.gender }}</mat-list-item>
-    <mat-list-item> <strong>Firstname:</strong> {{ loanRequest.firstName }}</mat-list-item>
-    <mat-list-item> <strong>Lastname:</strong> {{ loanRequest.lastName }}</mat-list-item>
-    <mat-list-item> <strong>Date of birth:</strong> {{ loanRequest.dob }}</mat-list-item>
-    <mat-list-item> <strong>Address:</strong> {{ loanRequest.address }}</mat-list-item>
-    <mat-list-item> <strong>Zipcode:</strong> {{ loanRequest.zipcode }}</mat-list-item>
-    <mat-list-item> <strong>City:</strong> {{ loanRequest.city }}</mat-list-item>
-    <mat-list-item> <strong>Income:</strong> {{ loanRequest.income }}</mat-list-item>
-    <mat-list-item> <strong>Marital status:</strong> {{ loanRequest.maritalStatus }}</mat-list-item>
-    <mat-list-item> <strong>Income type:</strong> {{ loanRequest.incomeType }}</mat-list-item>
-  </mat-list>
+  <table>
+    <tr><td><strong>Loantype:</strong><td><td> {{ loanRequest.loanType.title }}</td></tr>
+    <tr><td><strong>Amount:</strong><td><td> {{ loanRequest.amount | currency }}</td></tr>
+    <tr><td><strong>Gender:</strong><td><td> {{ loanRequest.gender }}</td></tr>
+    <tr><td><strong>Firstname:</strong><td><td> {{ loanRequest.firstName }}</td></tr>
+    <tr><td><strong>Lastname:</strong><td><td> {{ loanRequest.lastName }}</td></tr>
+    <tr><td><strong>Date of birth:</strong><td><td> {{ loanRequest.dob }}</td></tr>
+    <tr><td><strong>Address:</strong><td><td> {{ loanRequest.address }}</td></tr>
+    <tr><td><strong>Zipcode:</strong><td><td> {{ loanRequest.zipcode }}</td></tr>
+    <tr><td><strong>City:</strong><td><td> {{ loanRequest.city }}</td></tr>
+    <tr><td><strong>Income:</strong><td><td> {{ loanRequest.income }}</td></tr>
+    <tr><td><strong>Marital status:</strong><td><td> {{ loanRequest.maritalStatus }}</td></tr>
+    <tr><td><strong>Income type:</strong><td><td> {{ loanRequest.incomeType }}</td></tr>
+  </table>
+
 </div>
+
+<br />
 
 <div class="row gx-5">
   <div class="col-lg-6 col-xl-4">

@@ -10,6 +10,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -51,6 +52,7 @@ import { IndexComponent } from './components/index/index.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
+    MatSlideToggleModule,
     NgbModule,
     BrowserAnimationsModule
   ],

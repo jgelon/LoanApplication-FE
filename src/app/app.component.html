@@ -1,36 +1,51 @@
-<section id="banner">
-  <div class="inner split">
-    <section>
-      <h2>Loan Application</h2>
-    </section>
-    <section>
-      <p>A responsive site for automated testing</p>
-    </section>
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container px-5">
+    <a class="navbar-brand" href="#!">Loan Application</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="https://loanapplication-be.azurewebsites.net/swagger-ui/" target="_blank">API Doc</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/jgelon/LoanApplication-FE/" target="_blank">Source Frontend</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/jgelon/LoanApplication-BE/" target="_blank">Source Backend</a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <ul class="text-center list-inline py-3">
-    <li class="list-inline-item">
-      <a routerLink="/request" class="btn btn-info">Request New Loan</a>
-    </li>
-    <li class="list-inline-item">
-      <a routerLink="/list" class="btn btn-info">Show Loan Requests</a>
-    </li>
-  </ul>
+</nav>
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-5">
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-6">
+        <div class="text-center my-5">
+          <h1 class="display-5 fw-bolder text-white mb-2">Loan Application</h1>
+          <p class="lead text-white-50 mb-4">A responsive site for automated testing</p>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+            <a class="btn btn-primary btn-lg px-4 me-sm-3" routerLink="/request">Request New Loan</a>
+            <a class="btn btn-outline-light btn-lg px-4" routerLink="/list">Show Loan Requests</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Content section-->
+<section class="bg-light py-5">
+  <div class="container px-5 my-5 px-5">
+    <router-outlet></router-outlet>
+  </div>
 </section>
 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
 
-<section id="footer">
-  <ul class="text-center list-inline py-3">
-    <li>
-      <a class="btn btn-default" href="https://loanapplication-be.azurewebsites.net/swagger-ui/" target="_blank">API Doc</a>
-    </li>
-    <li>
-      <a class="btn btn-default" href="https://github.com/jgelon/LoanApplication-FE/" target="_blank">Source Frontend</a>
-    </li>
-    <li>
-      <a class="btn btn-default" href="https://github.com/jgelon/LoanApplication-BE/" target="_blank">Source Backend</a>
-    </li>
-  </ul>
-</section>
+<footer class="py-5 bg-dark">
+  <div class="container px-5">
+    <p class="m-0 text-center text-white">Copyright &copy; Jurn van Mieghem</p>
+  </div>
+</footer>

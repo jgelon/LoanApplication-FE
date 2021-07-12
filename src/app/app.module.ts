@@ -24,6 +24,7 @@ import { RequestALoanComponent } from './components/request-a-loan/request-a-loa
 import { CurrencyProxyPipe } from './pipes/currency-proxy.pipe'
 import { ConfigService } from "./service/config.service";
 import { ShowRequestComponent } from './components/show-request/show-request.component';
+import { IndexComponent } from './components/index/index.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ShowRequestComponent } from './components/show-request/show-request.com
     LoantypeSelectionComponent,
     RequestALoanComponent,
     CurrencyProxyPipe,
-    ShowRequestComponent
+    ShowRequestComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,

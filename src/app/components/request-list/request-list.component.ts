@@ -26,7 +26,7 @@ export class RequestListComponent implements OnInit {
     this._loanRequestService.generate().subscribe(data => {
       data.forEach(element => {
         this.loanRequests.push(element);
-      });      
+      });
     });
   }
 

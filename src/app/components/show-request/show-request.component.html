@@ -1,0 +1,19 @@
+
+<div *ngIf="loanRequest$ | async as loanRequest">
+  <h3>Loan Request #{{ loanRequest.id }}</h3>
+    <mat-list>
+    <mat-list-item> <strong>Loantype:</strong> {{ loanRequest.loanType.title }}</mat-list-item>
+    <mat-list-item> <strong>Amount:</strong> {{ loanRequest.amount | currency }}</mat-list-item>
+
+    <mat-list-item> <strong>Gender:</strong> {{ loanRequest.gender }}</mat-list-item>
+    <mat-list-item> <strong>Firstname:</strong> {{ loanRequest.firstName }}</mat-list-item>
+    <mat-list-item> <strong>Lastname:</strong> {{ loanRequest.lastName }}</mat-list-item>
+    <mat-list-item> <strong>Date of birth:</strong> {{ loanRequest.dob }}</mat-list-item>
+    <mat-list-item> <strong>Address:</strong> {{ loanRequest.address }}</mat-list-item>
+    <mat-list-item> <strong>Zipcode:</strong> {{ loanRequest.zipcode }}</mat-list-item>
+    <mat-list-item> <strong>City:</strong> {{ loanRequest.city }}</mat-list-item>
+    <mat-list-item> <strong>Income:</strong> {{ loanRequest.income }}</mat-list-item>
+    <mat-list-item> <strong>Marital status:</strong> {{ loanRequest.maritalStatus }}</mat-list-item>
+    <mat-list-item> <strong>Income type:</strong> {{ loanRequest.incomeType }}</mat-list-item>
+  </mat-list>
+</div>

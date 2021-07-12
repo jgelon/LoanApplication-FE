@@ -12,15 +12,21 @@ export class LoanRequestService {
   private loansUrl: string;
   private loansNewUrl: string;
   private loansGenerateUrl: string;
+  private loansIdUrl: string;
 
   constructor(private http: HttpClient) {
     this.loansUrl = BASE_URL + '/loanrequests/';
+    this.loansIdUrl = BASE_URL + '/loanrequests/id/';
     this.loansNewUrl = BASE_URL + '/loanrequests/new';
     this.loansGenerateUrl = BASE_URL + '/loanrequests/generate';
   }
 
   public findAll(): Observable<LoanRequest[]> {
     return this.http.get<LoanRequest[]>(this.loansUrl);
+  }
+
+  public getRequest(id: any) {
+    return this.http.get<LoanRequest>(this.loansIdUrl + id);
   }
 
   public generate(): Observable<LoanRequest[]> {

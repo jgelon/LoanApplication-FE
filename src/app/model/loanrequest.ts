@@ -11,7 +11,7 @@ export class LoanRequest {
     dob: Date;
     income: number;
     incomeType: string;
-    maritialStatus: string;
+    maritalStatus: string;
     loanType: LoanType;
     amount: number;
 }

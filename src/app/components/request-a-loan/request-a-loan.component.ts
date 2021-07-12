@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { LoanRequest } from 'src/app/model/loanrequest';
-import { LoanType } from 'src/app/model/loantype';
-import { LoanRequestService } from 'src/app/service/loanrequests.service';
-import { LoanTypesService } from 'src/app/service/loantypes.service';
+import { LoanRequest } from '../../model/loanrequest';
+import { LoanType } from '../../model/loantype';
+import { LoanRequestService } from '../../service/loanrequests.service';
+import { LoanTypesService } from '../../service/loantypes.service';
+import { ConfigService } from "../../service/config.service";
 
 @Component({
   selector: 'app-request-a-loan',
@@ -17,20 +18,31 @@ export class RequestALoanComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  genders: string[] = ['Male','Female','Other'];
-  incometypes: string[] = ['Temporary contract','Permanent contract','Self-employed','No income'];
-  maritialstates: string[] = ['Single', 'Married', 'Registered partners', 'Living together'];
+  genders: string[];
+  incomeTypes: string[];
+  maritalStates: string[];
 
   submitted: boolean = false;
   requestId: number;
 
   constructor(
-    private _formBuilder: FormBuilder, 
+    private _formBuilder: FormBuilder,
     private _loanTypesService: LoanTypesService,
-    private _loanRequestsService: LoanRequestService
+    private _loanRequestsService: LoanRequestService,
+    private _configService: ConfigService
   ) {}
-  
+
   ngOnInit() {
+    this._configService.genders().subscribe(data => {
+      this.genders = data;
+    })
+    this._configService.maritalstatus().subscribe(data => {
+      this.maritalStates = data;
+    })
+    this._configService.incomeTypes().subscribe(data => {
+      this.incomeTypes = data;
+    })
+
     this.firstFormGroup = this._formBuilder.group({
       loanType: ['', Validators.required],
       amount: ['', Validators.required]
@@ -47,7 +59,7 @@ export class RequestALoanComponent implements OnInit {
       zipcode: ['', Validators.required],
       city: ['', Validators.required],
       income: ['', Validators.required],
-      maritialstatus: ['', Validators.required],
+      maritalstatus: ['', Validators.required],
       incometype: ['', Validators.required]
     });
     this._loanTypesService.findAll().subscribe(data => {
@@ -61,7 +73,7 @@ export class RequestALoanComponent implements OnInit {
   get amount() {
     return this.firstFormGroup.value.amount
   }
-  
+
   submit(){
       let loanRequest = new LoanRequest();
       loanRequest.gender = this.thirdFormGroup.value.gender;
@@ -73,7 +85,7 @@ export class RequestALoanComponent implements OnInit {
       loanRequest.dob = this.thirdFormGroup.value.dob;
       loanRequest.income = this.thirdFormGroup.value.income;
       loanRequest.incomeType = this.thirdFormGroup.value.incomeType;
-      loanRequest.maritialStatus = this.thirdFormGroup.value.maritialStatus;
+      loanRequest.maritalStatus = this.thirdFormGroup.value.maritalstatus;
       loanRequest.loanType = this.firstFormGroup.value.loanType;
       loanRequest.amount = this.firstFormGroup.value.amount;
       this._loanRequestsService.newRequest(loanRequest).subscribe(data => {

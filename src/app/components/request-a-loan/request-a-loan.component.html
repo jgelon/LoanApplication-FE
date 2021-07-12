@@ -2,19 +2,19 @@
 <div [hidden]="!submitted">
   Your request has been submitted and is filled under <span id="requestId">#{{ requestId }}</span>
 </div>
- 
+
 <mat-horizontal-stepper [linear]="isLinear" #stepper [hidden]="submitted">
   <mat-step [stepControl]="firstFormGroup">
-      
+
     <app-loantype-selection></app-loantype-selection>
 
     <hr />
 
     <h3>Request loan</h3>
-    
+
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Loan Type</ng-template>      
-      
+      <ng-template matStepLabel>Loan Type</ng-template>
+
       <label id="type-radio-group-label">Select desired loan type</label>
       <mat-radio-group
         aria-labelledby="type-radio-group-label"
@@ -24,7 +24,7 @@
           {{ type.title }} (minimum {{ type.minAmount | currency }})
         </mat-radio-button>
       </mat-radio-group>
-        
+
       <br/>
       <mat-form-field>
         <mat-label>Amount</mat-label>
@@ -120,8 +120,8 @@
       <br/>
       <mat-form-field>
         <mat-label>Maritial status</mat-label>
-        <mat-select required formControlName="maritialstatus">
-          <mat-option *ngFor="let state of maritialstates" [value]="state">
+        <mat-select required formControlName="maritalStatus">
+          <mat-option *ngFor="let state of maritalStates" [value]="state">
             {{state}}
           </mat-option>
         </mat-select>
@@ -135,7 +135,7 @@
       <mat-form-field>
         <mat-label>Income type</mat-label>
         <mat-select required formControlName="incometype">
-          <mat-option *ngFor="let type of incometypes" [value]="type">
+          <mat-option *ngFor="let type of incomeTypes" [value]="type">
             {{type}}
           </mat-option>
         </mat-select>
@@ -151,19 +151,19 @@
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
-      </div>      
+      </div>
     </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Verification</ng-template>
     <h3>Verify your information</h3>
-  
+
     <mat-list>
       <mat-list-item> <strong>Loantype:</strong> {{ loanType.title }}</mat-list-item>
       <mat-list-item> <strong>Amount:</strong> {{ amount | currency }}</mat-list-item>
 
       <mat-list-item> <strong>Acknowledgement:</strong> {{ this.secondFormGroup.value.knowledge }}</mat-list-item>
-      
+
       <mat-list-item> <strong>Gender:</strong> {{ this.thirdFormGroup.value.gender }}</mat-list-item>
       <mat-list-item> <strong>Firstname:</strong> {{ this.thirdFormGroup.value.firstname }}</mat-list-item>
       <mat-list-item> <strong>Lastname:</strong> {{ this.thirdFormGroup.value.lastname }}</mat-list-item>
@@ -172,11 +172,11 @@
       <mat-list-item> <strong>Zipcode:</strong> {{ this.thirdFormGroup.value.zipcode }}</mat-list-item>
       <mat-list-item> <strong>City:</strong> {{ this.thirdFormGroup.value.city }}</mat-list-item>
       <mat-list-item> <strong>Income:</strong> {{ this.thirdFormGroup.value.income }}</mat-list-item>
-      <mat-list-item> <strong>Maritialstatus:</strong> {{ this.thirdFormGroup.value.maritialstatus }}</mat-list-item>
-      <mat-list-item> <strong>Incometype:</strong> {{ this.thirdFormGroup.value.incometype }}</mat-list-item>
-      
+      <mat-list-item> <strong>Marital status:</strong> {{ this.thirdFormGroup.value.maritalStatus }}</mat-list-item>
+      <mat-list-item> <strong>Income type:</strong> {{ this.thirdFormGroup.value.incometype }}</mat-list-item>
+
 	  </mat-list>
-  
+
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>

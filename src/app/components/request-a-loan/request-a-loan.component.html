@@ -33,12 +33,15 @@
           <mat-form-field>
             <mat-label>Amount</mat-label>
             <input matInput type="number" min="0" max="10000000" placeholder="Amount" formControlName="amount" required>
+            <span matPrefix>&euro;&nbsp;</span>
           </mat-form-field>
-          <span [hidden]="loanType == '' || amount == '' || amount > loanType.minAmount" class="alert-danger">
+
+          <div [hidden]="loanType == '' || amount == '' || amount > loanType.minAmount" class="alert-danger">
             The desired amount is lower than the minimum amount ({{loanType.title}}) of the selected loan type. You may eventually choose another loan type.
-          </span>
+          </div>
+          <br/>
           <div>
-            <button mat-flat-button color="primary" matStepperNext>Next</button>
+            <button mat-flat-button color="primary" matStepperNext [disabled]="loanType == '' || amount == '' || amount < loanType.minAmount">Next</button>
           </div>
         </form>
       </mat-step>

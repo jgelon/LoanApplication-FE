@@ -17,16 +17,14 @@ export class RequestListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this._loanRequestService.findAll().subscribe(data => {
-        this.loanRequests = data;
-      });
+    this._loanRequestService.findAll().subscribe(data => {
+      this.loanRequests = data;
+    });
   }
 
   generate() {
     this._loanRequestService.generate().subscribe(data => {
-      data.forEach(element => {
-        this.loanRequests.push(element);
-      });
+      this.loanRequests = this.loanRequests.concat(data);
     });
   }
 

@@ -28,20 +28,90 @@
                 {{ type.title }} (minimum {{ type.minAmount | currency }})
             </label>
 
-
             <input type="number" min="0" max="10000000" placeholder="Amount" formControlName="amount">
 
             <div [hidden]="loanType == '' || amount == '' || amount > loanType.minAmount" class="alert-danger">
                 The desired amount is lower than the minimum amount ({{loanType.title}}) of the selected loan type. You may eventually choose another loan type.
+                <br/>
             </div>
-            <br/>
-            <div>
-            <button class="btn btn-info" [disabled]="loanType == '' || amount == '' || amount < loanType.minAmount">Next</button>
+
+            <div class="stepNav">
+                <button class="btn btn-info" [disabled]="loanType == '' || amount == '' || amount < loanType.minAmount">Next</button>
             </div>
           </form>
 
         </div>
 
+        <div class="col-lg-12 col-xl-12" [hidden]="step!=2">
+            <h3>Acknowledgement</h3>
+            <form [formGroup]="secondFormGroup" (ngSubmit)='goToStep3()'>
+                <table>
+                  <tr><td><strong>Loantype:</strong></td><td><span id="loanType">{{ loanType.title }}</span></td></tr>
+                  <tr><td><strong>Amount:</strong></td><td><span id="loanAmount">{{ amount | currency }}</span></td></tr>
+                </table>
+      
+                <br/>
+
+                <label>
+                    <input
+                    formControlName="knowledge"
+                    type="radio"
+                    name="knowledge"
+                    value="yes"
+                    />
+                    I have knowledge of and experience with borrowing.
+                </label>
+                <label>
+                    <input
+                    formControlName="knowledge"
+                    type="radio"
+                    name="knowledge"
+                    value="no"
+                    />
+                    I do not have knowledge of and experience with borrowing.
+                </label>
+                <br/>
+                <div [hidden]="this.secondFormGroup.value.knowledge != 'no'">
+                  <p>
+                    Borrowing money is not always a good idea. Make sure to inform yourself on the conditions and interest rates
+                    which apply to the loan. Make note that the provided interest rate might apply for only a limited period of
+                    the loan. There are many other conditions to look into when automating this test. Take your time to think
+                    about this offer and ask questions whenever something is unclear.
+                  </p>
+                </div>
+
+                <div class="stepNav">
+                  <button class="btn btn-info" (click)="back()">Back</button>
+                  <button class="btn btn-info" [disabled]="this.secondFormGroup.value.knowledge != 'yes'">Next</button>
+                </div>
+            </form>
+  
+        </div>
+
+        
+        <div class="col-lg-12 col-xl-12" [hidden]="step!=3">
+            <h3>Personal details</h3>
+            <form [formGroup]="thirdFormGroup" (ngSubmit)='goToStep4()'>
+                
+                <div class="stepNav">
+                  <button class="btn btn-info" (click)="back()">Back</button>
+                  <button class="btn btn-info">Next</button>
+                </div>
+            </form>
+  
+        </div>
+
+        <div class="col-lg-12 col-xl-12" [hidden]="step!=4">
+            <h3>Personal details</h3>
+            <form [formGroup]="thirdFormGroup" (ngSubmit)='submit()'>
+                
+                <div class="stepNav">
+                  <button class="btn btn-info" (click)="back()">Back</button>
+                  <button class="btn btn-info">Request the loan</button>
+                </div>
+            </form>
+  
+        </div>
     </div>
 
 </div>

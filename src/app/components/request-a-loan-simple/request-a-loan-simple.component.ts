@@ -83,6 +83,24 @@ export class RequestALoanSimpleComponent implements OnInit {
     }
   }
 
+  goToStep3() {
+    if(this.secondFormGroup.status == 'VALID'){
+      console.log(this.secondFormGroup.value);
+      this.step = 3;
+    }
+  }
+
+  goToStep4() {
+    if(this.thirdFormGroup.status == 'VALID'){
+      console.log(this.thirdFormGroup.value);
+      this.step = 4;
+    }
+  }
+
+  back() {
+    this.step--;
+  }
+
   submit(){
       let loanRequest = new LoanRequest();
       loanRequest.gender = this.thirdFormGroup.value.gender;

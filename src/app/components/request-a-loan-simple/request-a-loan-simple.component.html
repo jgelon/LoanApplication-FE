@@ -1,0 +1,47 @@
+<div class="row gx-5 justify-content-center">
+    <h1>Requests a Loan</h1>
+
+    <div class="col-lg-12 col-xl-12" [hidden]="!submitted">
+      Your request has been submitted and is filled under <span id="requestId">#{{ requestId }}</span>
+    </div>
+
+    <div class="col-lg-12 col-xl-12" [hidden]="submitted">
+
+        <div class="col-lg-12 col-xl-12" [hidden]="step!=1">
+
+          <app-loantype-selection></app-loantype-selection>
+
+          <hr />
+
+          <h3>Request loan</h3>
+
+          <form [formGroup]='firstFormGroup' novalidate class="form" (ngSubmit)='goToStep2()'>
+
+            Select desired loan type:
+            <label *ngFor="let type of loanTypes;">
+                <input
+                  formControlName="loanType"
+                  type="radio"
+                  name="loanType"
+                  [value]="type"
+                />
+                {{ type.title }} (minimum {{ type.minAmount | currency }})
+            </label>
+
+
+            <input type="number" min="0" max="10000000" placeholder="Amount" formControlName="amount">
+
+            <div [hidden]="loanType == '' || amount == '' || amount > loanType.minAmount" class="alert-danger">
+                The desired amount is lower than the minimum amount ({{loanType.title}}) of the selected loan type. You may eventually choose another loan type.
+            </div>
+            <br/>
+            <div>
+            <button class="btn btn-info" [disabled]="loanType == '' || amount == '' || amount < loanType.minAmount">Next</button>
+            </div>
+          </form>
+
+        </div>
+
+    </div>
+
+</div>

@@ -25,6 +25,7 @@ import { CurrencyProxyPipe } from './pipes/currency-proxy.pipe'
 import { ConfigService } from "./service/config.service";
 import { ShowRequestComponent } from './components/show-request/show-request.component';
 import { IndexComponent } from './components/index/index.component';
+import { RequestALoanSimpleComponent } from './components/request-a-loan-simple/request-a-loan-simple.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { IndexComponent } from './components/index/index.component';
     RequestALoanComponent,
     CurrencyProxyPipe,
     ShowRequestComponent,
-    IndexComponent
+    IndexComponent,
+    RequestALoanSimpleComponent
   ],
   imports: [
     BrowserModule,

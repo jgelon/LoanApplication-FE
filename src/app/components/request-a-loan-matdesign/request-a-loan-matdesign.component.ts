@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { LoanRequest } from '../../model/loanrequest';
 import { LoanType } from '../../model/loantype';
 import { LoanRequestService } from '../../service/loanrequests.service';
 import { LoanTypesService } from '../../service/loantypes.service';
@@ -8,11 +7,11 @@ import { ConfigService } from "../../service/config.service";
 import { NewLoanRequest } from 'src/app/model/newloanrequest';
 
 @Component({
-  selector: 'app-request-a-loan',
-  templateUrl: './request-a-loan.component.html',
-  styleUrls: ['./request-a-loan.component.css']
+  selector: 'app-request-a-loan-matdesign',
+  templateUrl: './request-a-loan-matdesign.component.html',
+  styleUrls: ['./request-a-loan-matdesign.component.css']
 })
-export class RequestALoanComponent implements OnInit {
+export class RequestALoanMatdesignComponent implements OnInit {
 
   loanTypes: LoanType[];
   isLinear = true;

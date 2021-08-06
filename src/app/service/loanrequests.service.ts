@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { BASE_URL } from '../constants/constants';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { NewLoanRequest } from '../model/newloanrequest';
 
 @Injectable()
 export class LoanRequestService {
@@ -33,8 +34,8 @@ export class LoanRequestService {
     return this.http.get<LoanRequest[]>(this.loansGenerateUrl);
   }
 
-  public newRequest(loanRequest: LoanRequest) {
-    return this.http.post<LoanRequest>(this.loansNewUrl, loanRequest).pipe(
+  public newRequest(loanRequest: NewLoanRequest) {
+    return this.http.post<NewLoanRequest>(this.loansNewUrl, loanRequest).pipe(
               catchError(this.handleError)
             );
   }

@@ -5,6 +5,7 @@ import { LoanType } from '../../model/loantype';
 import { LoanRequestService } from '../../service/loanrequests.service';
 import { LoanTypesService } from '../../service/loantypes.service';
 import { ConfigService } from "../../service/config.service";
+import { NewLoanRequest } from 'src/app/model/newloanrequest';
 
 @Component({
   selector: 'app-request-a-loan-simple',
@@ -24,6 +25,7 @@ export class RequestALoanSimpleComponent implements OnInit {
 
   step: number = 1;
 
+  errors: string;
   submitted: boolean = false;
   requestId: number;
 
@@ -102,7 +104,7 @@ export class RequestALoanSimpleComponent implements OnInit {
   }
 
   submit(){
-      let loanRequest = new LoanRequest();
+      let loanRequest = new NewLoanRequest();
       loanRequest.gender = this.thirdFormGroup.value.gender;
       loanRequest.firstName = this.thirdFormGroup.value.firstName;
       loanRequest.lastName = this.thirdFormGroup.value.lastName;
@@ -113,12 +115,18 @@ export class RequestALoanSimpleComponent implements OnInit {
       loanRequest.income = this.thirdFormGroup.value.income;
       loanRequest.incomeType = this.thirdFormGroup.value.incomeType;
       loanRequest.maritalStatus = this.thirdFormGroup.value.maritalstatus;
-      loanRequest.loanType = this.firstFormGroup.value.loanType;
+      loanRequest.loanTypeId = this.firstFormGroup.value.loanType.id;
       loanRequest.amount = this.firstFormGroup.value.amount;
-      this._loanRequestsService.newRequest(loanRequest).subscribe(data => {
-        console.log(data);
-        this.submitted = true;
-        this.requestId = data.id;
-      });
+      this._loanRequestsService.newRequest(loanRequest).subscribe(
+        data => {
+          console.log(data);
+          this.step = 5;
+          this.submitted = true;
+          this.requestId = data.id;
+        },
+        error => {
+            this.errors = error
+        }
+      );
   }
 }

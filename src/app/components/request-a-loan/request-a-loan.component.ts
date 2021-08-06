@@ -5,6 +5,7 @@ import { LoanType } from '../../model/loantype';
 import { LoanRequestService } from '../../service/loanrequests.service';
 import { LoanTypesService } from '../../service/loantypes.service';
 import { ConfigService } from "../../service/config.service";
+import { NewLoanRequest } from 'src/app/model/newloanrequest';
 
 @Component({
   selector: 'app-request-a-loan',
@@ -75,7 +76,7 @@ export class RequestALoanComponent implements OnInit {
   }
 
   submit(){
-      let loanRequest = new LoanRequest();
+      let loanRequest = new NewLoanRequest();
       loanRequest.gender = this.thirdFormGroup.value.gender;
       loanRequest.firstName = this.thirdFormGroup.value.firstName;
       loanRequest.lastName = this.thirdFormGroup.value.lastName;
@@ -86,7 +87,7 @@ export class RequestALoanComponent implements OnInit {
       loanRequest.income = this.thirdFormGroup.value.income;
       loanRequest.incomeType = this.thirdFormGroup.value.incomeType;
       loanRequest.maritalStatus = this.thirdFormGroup.value.maritalstatus;
-      loanRequest.loanType = this.firstFormGroup.value.loanType;
+      loanRequest.loanTypeId = this.firstFormGroup.value.loanType.id;
       loanRequest.amount = this.firstFormGroup.value.amount;
       this._loanRequestsService.newRequest(loanRequest).subscribe(data => {
         console.log(data);

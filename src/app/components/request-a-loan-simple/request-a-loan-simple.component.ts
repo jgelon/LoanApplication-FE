@@ -119,6 +119,15 @@ export class RequestALoanSimpleComponent implements OnInit {
     this.step--;
   }
 
+  isValidInput1(fieldName: string | number): boolean {
+    return this.firstFormGroup.controls[fieldName].invalid &&
+      (this.firstFormGroup.controls[fieldName].dirty || this.firstFormGroup.controls[fieldName].touched);
+  }
+  isValidInput3(fieldName: string | number): boolean {
+    return this.thirdFormGroup.controls[fieldName].invalid &&
+      (this.thirdFormGroup.controls[fieldName].dirty || this.thirdFormGroup.controls[fieldName].touched);
+  }
+
   submit(){
       let loanRequest = new NewLoanRequest();
       loanRequest.gender = this.thirdFormGroup.value.gender;

@@ -20,21 +20,25 @@ import { LoanReasonsService } from './service/loanreasons.service';
 import { LoanRequestService } from './service/loanrequests.service';
 import { RequestListComponent } from './components/request-list/request-list.component';
 import { LoantypeSelectionComponent } from './components/loantype-selection/loantype-selection.component';
-import { RequestALoanComponent } from './components/request-a-loan/request-a-loan.component';
 import { CurrencyProxyPipe } from './pipes/currency-proxy.pipe'
 import { ConfigService } from "./service/config.service";
 import { ShowRequestComponent } from './components/show-request/show-request.component';
 import { IndexComponent } from './components/index/index.component';
+import { RequestALoanSimpleComponent } from './components/request-a-loan-simple/request-a-loan-simple.component';
+import { RequestALoanMatdesignComponent } from './components/request-a-loan-matdesign/request-a-loan-matdesign.component';
+import { MyTitleCasePipe } from './pipes/titlecase.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RequestListComponent,
     LoantypeSelectionComponent,
-    RequestALoanComponent,
     CurrencyProxyPipe,
+    MyTitleCasePipe,
     ShowRequestComponent,
-    IndexComponent
+    IndexComponent,
+    RequestALoanMatdesignComponent,
+    RequestALoanSimpleComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,8 @@ import { IndexComponent } from './components/index/index.component';
     LoanTypesService,
     LoanReasonsService,
     LoanRequestService,
-    ConfigService
+    ConfigService,
+    CurrencyProxyPipe
   ],
   bootstrap: [AppComponent]
 })

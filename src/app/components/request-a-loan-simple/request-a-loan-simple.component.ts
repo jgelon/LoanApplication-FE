@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { LoanRequest } from '../../model/loanrequest';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import { LoanType } from '../../model/loantype';
 import { LoanRequestService } from '../../service/loanrequests.service';
 import { LoanTypesService } from '../../service/loantypes.service';
 import { ConfigService } from "../../service/config.service";
+import { NewLoanRequest } from 'src/app/model/newloanrequest';
+import { CurrencyProxyPipe } from 'src/app/pipes/currency-proxy.pipe';
 
 @Component({
-  selector: 'app-request-a-loan',
-  templateUrl: './request-a-loan.component.html',
-  styleUrls: ['./request-a-loan.component.css']
+  selector: 'app-request-a-loan-simple',
+  templateUrl: './request-a-loan-simple.component.html',
+  styleUrls: ['./request-a-loan-simple.component.css']
 })
-export class RequestALoanComponent implements OnInit {
+export class RequestALoanSimpleComponent implements OnInit {
 
   loanTypes: LoanType[];
   isLinear = true;
@@ -22,6 +23,9 @@ export class RequestALoanComponent implements OnInit {
   incomeTypes: string[];
   maritalStates: string[];
 
+  step: number = 1;
+
+  errors: string;
   submitted: boolean = false;
   requestId: number;
 
@@ -29,7 +33,8 @@ export class RequestALoanComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _loanTypesService: LoanTypesService,
     private _loanRequestsService: LoanRequestService,
-    private _configService: ConfigService
+    private _configService: ConfigService,
+    private _currencyPipe: CurrencyProxyPipe
   ) {}
 
   ngOnInit() {
@@ -45,8 +50,9 @@ export class RequestALoanComponent implements OnInit {
 
     this.firstFormGroup = this._formBuilder.group({
       loanType: ['', Validators.required],
-      amount: ['', Validators.required]
+      amount: ['', [Validators.required, Validators.minLength(3)]]
     });
+
     this.secondFormGroup = this._formBuilder.group({
       knowledge: ['', [Validators.required, Validators.pattern("^yes$")]],
     });
@@ -74,8 +80,47 @@ export class RequestALoanComponent implements OnInit {
     return this.firstFormGroup.value.amount
   }
 
+  goToStep2() {
+    if(this.firstFormGroup.status == 'VALID'){
+      if (this.amount < this.loanType.minAmount ) {
+        this.errors = "The desired amount is lower than the minimum amount ("+ this._currencyPipe.transform(this.loanType.minAmount) + ") of the selected loan type <b>"+ this.loanType.title +"</b>. You may want to choose another loan type.";
+      } else {
+          console.log(this.firstFormGroup.value);
+          this.step = 2;
+          this.errors = "";
+      }
+    } else {
+      this.errors = "Not all fields have been provided, all fields are required.";
+    }
+  }
+
+  goToStep3() {
+    if(this.secondFormGroup.status == 'VALID'){
+      console.log(this.secondFormGroup.value);
+      this.step = 3;
+      this.errors = "";
+    } else {
+      this.errors = "You must accept the knowledge clause.";
+    }
+  }
+
+  goToStep4() {
+    if(this.thirdFormGroup.status == 'VALID'){
+      console.log(this.thirdFormGroup.value);
+      this.step = 4;
+      this.errors = "";
+    } else {
+      this.errors = "Not all fields have been provided, all fields are required.";
+    }
+  }
+
+  back() {
+    this.errors = "";
+    this.step--;
+  }
+
   submit(){
-      let loanRequest = new LoanRequest();
+      let loanRequest = new NewLoanRequest();
       loanRequest.gender = this.thirdFormGroup.value.gender;
       loanRequest.firstName = this.thirdFormGroup.value.firstName;
       loanRequest.lastName = this.thirdFormGroup.value.lastName;
@@ -86,12 +131,19 @@ export class RequestALoanComponent implements OnInit {
       loanRequest.income = this.thirdFormGroup.value.income;
       loanRequest.incomeType = this.thirdFormGroup.value.incomeType;
       loanRequest.maritalStatus = this.thirdFormGroup.value.maritalstatus;
-      loanRequest.loanType = this.firstFormGroup.value.loanType;
+      loanRequest.loanTypeId = this.firstFormGroup.value.loanType.id;
       loanRequest.amount = this.firstFormGroup.value.amount;
-      this._loanRequestsService.newRequest(loanRequest).subscribe(data => {
-        console.log(data);
-        this.submitted = true;
-        this.requestId = data.id;
-      });
+      this._loanRequestsService.newRequest(loanRequest).subscribe(
+        data => {
+          console.log(data);
+          this.step = 5;
+          this.submitted = true;
+          this.requestId = data.id;
+          this.errors = "";
+        },
+        error => {
+            this.errors = error
+        }
+      );
   }
 }

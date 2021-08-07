@@ -164,16 +164,16 @@
                     <tr><td><strong>Loantype:</strong></td><td> {{ loanType.title }}</td></tr>
                     <tr><td><strong>Amount:</strong></td><td> {{ amount | currency }}</td></tr>
                     <tr><td><strong>Acknowledgement:</strong></td><td> {{ this.secondFormGroup.value.knowledge }}</td></tr>
-                    <tr><td><strong>Gender:</strong></td><td> {{ this.thirdFormGroup.value.gender }}</td></tr>
+                    <tr><td><strong>Gender:</strong></td><td> {{ this.thirdFormGroup.value.gender | titleCase }}</td></tr>
                     <tr><td><strong>Firstname:</strong></td><td> {{ this.thirdFormGroup.value.firstname }}</td></tr>
                     <tr><td><strong>Lastname:</strong></td><td> {{ this.thirdFormGroup.value.lastname }}</td></tr>
-                    <tr><td><strong>Date of birth:</strong></td><td> {{ this.thirdFormGroup.value.dob }}</td></tr>
+                    <tr><td><strong>Date of birth:</strong></td><td> {{ this.thirdFormGroup.value.dob | date:'mediumDate' }}</td></tr>
                     <tr><td><strong>Address:</strong></td><td> {{ this.thirdFormGroup.value.address }}</td></tr>
                     <tr><td><strong>Zipcode:</strong></td><td> {{ this.thirdFormGroup.value.zipcode }}</td></tr>
                     <tr><td><strong>City:</strong></td><td> {{ this.thirdFormGroup.value.city }}</td></tr>
                     <tr><td><strong>Income:</strong></td><td> {{ this.thirdFormGroup.value.income }}</td></tr>
-                    <tr><td><strong>Marital status:</strong></td><td> {{ this.thirdFormGroup.value.maritalStatus }}</td></tr>
-                    <tr><td><strong>Income type:</strong></td><td> {{ this.thirdFormGroup.value.incometype }}</td></tr>
+                    <tr><td><strong>Marital status:</strong></td><td> {{ this.thirdFormGroup.value.maritalStatus | titleCase }}</td></tr>
+                    <tr><td><strong>Income type:</strong></td><td> {{ this.thirdFormGroup.value.incometype | titleCase }}</td></tr>
                 </table>
 
                 <div class="stepNav">

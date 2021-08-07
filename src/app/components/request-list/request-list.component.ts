@@ -11,6 +11,7 @@ export class RequestListComponent implements OnInit {
 
   loanRequests: LoanRequest[];
   displayedColumns: string[] = ['id', 'fullname', 'address', 'type', 'amount'];
+  loading = false;
 
   constructor(
     private _loanRequestService: LoanRequestService
@@ -23,8 +24,10 @@ export class RequestListComponent implements OnInit {
   }
 
   generate() {
+    this.loading = true;
     this._loanRequestService.generate().subscribe(data => {
       this.loanRequests = this.loanRequests.concat(data);
+      this.loading = false;
     });
   }
 

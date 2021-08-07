@@ -89,7 +89,7 @@
             <mat-label>Gender</mat-label>
             <mat-select required formControlName="gender">
               <mat-option *ngFor="let gen of genders" [value]="gen">
-                {{gen}}
+                {{gen | titleCase}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -130,7 +130,7 @@
             <mat-label>Maritial status</mat-label>
             <mat-select required formControlName="maritalStatus">
               <mat-option *ngFor="let state of maritalStates" [value]="state">
-                {{state}}
+                {{state | titleCase}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -144,7 +144,7 @@
             <mat-label>Income type</mat-label>
             <mat-select required formControlName="incometype">
               <mat-option *ngFor="let type of incomeTypes" [value]="type">
-                {{type}}
+                {{type | titleCase}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -172,16 +172,16 @@
 
           <mat-list-item> <strong>Acknowledgement:</strong> {{ this.secondFormGroup.value.knowledge }}</mat-list-item>
 
-          <mat-list-item> <strong>Gender:</strong> {{ this.thirdFormGroup.value.gender }}</mat-list-item>
+          <mat-list-item> <strong>Gender:</strong> {{ this.thirdFormGroup.value.gender | titleCase }}</mat-list-item>
           <mat-list-item> <strong>Firstname:</strong> {{ this.thirdFormGroup.value.firstname }}</mat-list-item>
           <mat-list-item> <strong>Lastname:</strong> {{ this.thirdFormGroup.value.lastname }}</mat-list-item>
-          <mat-list-item> <strong>Date of birth:</strong> {{ this.thirdFormGroup.value.dob }}</mat-list-item>
+          <mat-list-item> <strong>Date of birth:</strong> {{ this.thirdFormGroup.value.dob | date:'mediumDate' }}</mat-list-item>
           <mat-list-item> <strong>Address:</strong> {{ this.thirdFormGroup.value.address }}</mat-list-item>
           <mat-list-item> <strong>Zipcode:</strong> {{ this.thirdFormGroup.value.zipcode }}</mat-list-item>
           <mat-list-item> <strong>City:</strong> {{ this.thirdFormGroup.value.city }}</mat-list-item>
           <mat-list-item> <strong>Income:</strong> {{ this.thirdFormGroup.value.income }}</mat-list-item>
-          <mat-list-item> <strong>Marital status:</strong> {{ this.thirdFormGroup.value.maritalStatus }}</mat-list-item>
-          <mat-list-item> <strong>Income type:</strong> {{ this.thirdFormGroup.value.incometype }}</mat-list-item>
+          <mat-list-item> <strong>Marital status:</strong> {{ this.thirdFormGroup.value.maritalStatus | titleCase }}</mat-list-item>
+          <mat-list-item> <strong>Income type:</strong> {{ this.thirdFormGroup.value.incometype | titleCase }}</mat-list-item>
 
         </mat-list>
 

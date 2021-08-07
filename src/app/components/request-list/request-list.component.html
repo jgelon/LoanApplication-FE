@@ -38,7 +38,7 @@
 <div class="row gx-5">
   <div class="col-lg-6 col-xl-4">
     <p>
-      <button mat-raised-button color="accent" (click)="generate()">Generate requesters</button>
+      <button mat-raised-button color="accent" [class.spinner]="loading" [disabled]="loading" (click)="generate()">Generate requesters</button>
     </p>
   </div>
 </div>

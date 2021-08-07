@@ -5,8 +5,7 @@
       Your request has been submitted and is filled under <span id="requestId">#{{ requestId }}</span>
     </div>
 
-    <div class="col-lg-12 col-xl-12 alert alert-danger" [hidden]="!errors">
-        {{ errors }}
+    <div class="col-lg-12 col-xl-12 alert alert-danger" [hidden]="!errors" [innerHTML]="errors">
     </div>
 
     <div class="col-lg-12 col-xl-12" [hidden]="submitted">
@@ -32,15 +31,11 @@
                 {{ type.title }} (minimum {{ type.minAmount | currency }})
             </label>
 
+            <label>Amount</label>
             <input type="number" min="0" max="10000000" placeholder="Amount" formControlName="amount">
 
-            <div [hidden]="loanType == '' || amount == '' || amount > loanType.minAmount" class="alert-danger">
-                The desired amount is lower than the minimum amount ({{loanType.title}}) of the selected loan type. You may eventually choose another loan type.
-                <br/>
-            </div>
-
             <div class="stepNav">
-                <button class="btn btn-info" [disabled]="loanType == '' || amount == '' || amount < loanType.minAmount">Next</button>
+                <button type="submit" class="btn btn-info">Next</button>
             </div>
           </form>
 
@@ -75,7 +70,7 @@
                     I do not have knowledge of and experience with borrowing.
                 </label>
                 <br/>
-                <div [hidden]="this.secondFormGroup.value.knowledge != 'no'">
+                <div [hidden]="this.secondFormGroup.value.knowledge != 'no'" class="alert alert-info">
                   <p>
                     Borrowing money is not always a good idea. Make sure to inform yourself on the conditions and interest rates
                     which apply to the loan. Make note that the provided interest rate might apply for only a limited period of
@@ -85,8 +80,8 @@
                 </div>
 
                 <div class="stepNav">
-                  <button class="btn btn-info" (click)="back()">Back</button>
-                  <button class="btn btn-info" [disabled]="this.secondFormGroup.value.knowledge != 'yes'">Next</button>
+                  <button type="button" class="btn btn-info" (click)="back()">Back</button>
+                  <button type="submit" class="btn btn-info" [disabled]="this.secondFormGroup.value.knowledge != 'yes'">Next</button>
                 </div>
             </form>
   
@@ -96,56 +91,68 @@
         <div class="col-lg-12 col-xl-12" [hidden]="step!=3">
             <h3>Personal details</h3>
             <form [formGroup]="thirdFormGroup" (ngSubmit)='goToStep4()'>
-                
+
+              <div class="form-group">
                 <label>Gender</label>
-                <select formControlName="gender">
-                    <option *ngFor="let gen of genders" [value]="gen">{{ gen }}</option>
+                <select formControlName="gender" required>
+                    <option *ngFor="let gen of genders" [value]="gen">{{ gen | titleCase }}</option>
                 </select>
-
+              </div>
+              <div class="form-group">
                 <label>Firstname</label>
-                <input type="text"  placeholder="Firstname" formControlName="firstname" />
+                <input type="text"  placeholder="Firstname" formControlName="firstname" required />
                 <br/>
-
+              </div>
+              <div class="form-group">
                 <label>Lastname</label>
-                <input type="text"  placeholder="Lastname" formControlName="lastname" />
+                <input type="text"  placeholder="Lastname" formControlName="lastname" required />
                 <br/>
-
+              </div>
+              <div class="form-group">
                 <label>Date of birth</label>
-                <input type="date"  placeholder="Date of birth" formControlName="dob" />
+                <input type="date"  placeholder="Date of birth" formControlName="dob" required />
                 <br/>
-                
+              </div>
+              <div class="form-group">
                 <label>Address</label>
-                <input type="text"  placeholder="Address" formControlName="address" />
+                <input type="text"  placeholder="Address" formControlName="address" required />
                 <br/>
-                
+              </div>
+              <div class="form-group">
                 <label>Zipcode</label>
-                <input type="text"  placeholder="Zipcode" formControlName="zipcode" />
+                <input type="text"  placeholder="Zipcode" formControlName="zipcode" required />
                 <br/>
-                
+              </div>
+              <div class="form-group">
                 <label>City</label>
-                <input type="text"  placeholder="City" formControlName="city" />
+                <input type="text"  placeholder="City" formControlName="city" required />
                 <br/>
-
+              </div>
+              <div class="form-group">
                 <label>Marital status</label>
-                <select formControlName="maritalStatus">
-                    <option *ngFor="let state of maritalStates" [value]="state">{{ state }}</option>
+                <select formControlName="maritalStatus" required>
+                    <option *ngFor="let state of maritalStates" [value]="state">{{ state | titleCase }}</option>
                 </select>
                 <br/>
-
+              </div>
+              <div class="form-group">
                 <label>Net year income</label>
-                <input type="number"  placeholder="Income" formControlName="income" />
+                <input type="number"  placeholder="Income" formControlName="income" required/>
                 <br/>
-                
+              </div>
+              <div class="form-group">
                 <label>Marital status</label>
-                <select formControlName="incometype">
-                    <option *ngFor="let type of incomeTypes" [value]="type">{{ type }}</option>
+                <select formControlName="incometype" required>
+                    <option *ngFor="let type of incomeTypes" [value]="type">{{ type | titleCase }}</option>
                 </select>
                 <br/>
-
+              </div>
+              <div class="form-group">
                 <div class="stepNav">
-                  <button class="btn btn-info" (click)="back()">Back</button>
-                  <button class="btn btn-info">Next</button>
+                  <button type="button" class="btn btn-info" (click)="back()">Back</button>
+                  <button type="submit" class="btn btn-info">Next</button>
                 </div>
+              </div>
             </form>
   
         </div>
@@ -170,8 +177,8 @@
                 </table>
 
                 <div class="stepNav">
-                  <button class="btn btn-info" (click)="back()">Back</button>
-                  <button class="btn btn-info">Request the loan</button>
+                  <button type="button" class="btn btn-info" (click)="back()">Back</button>
+                  <button type="submit" class="btn btn-info">Request the loan</button>
                 </div>
             </form>
   

@@ -26,6 +26,7 @@ import { ShowRequestComponent } from './components/show-request/show-request.com
 import { IndexComponent } from './components/index/index.component';
 import { RequestALoanSimpleComponent } from './components/request-a-loan-simple/request-a-loan-simple.component';
 import { RequestALoanMatdesignComponent } from './components/request-a-loan-matdesign/request-a-loan-matdesign.component';
+import { MyTitleCasePipe } from './pipes/titlecase.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RequestALoanMatdesignComponent } from './components/request-a-loan-matd
     RequestListComponent,
     LoantypeSelectionComponent,
     CurrencyProxyPipe,
+    MyTitleCasePipe,
     ShowRequestComponent,
     IndexComponent,
     RequestALoanMatdesignComponent,
@@ -60,7 +62,8 @@ import { RequestALoanMatdesignComponent } from './components/request-a-loan-matd
     LoanTypesService,
     LoanReasonsService,
     LoanRequestService,
-    ConfigService
+    ConfigService,
+    CurrencyProxyPipe
   ],
   bootstrap: [AppComponent]
 })

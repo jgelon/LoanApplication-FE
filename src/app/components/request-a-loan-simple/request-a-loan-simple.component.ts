@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { LoanRequest } from '../../model/loanrequest';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import { LoanType } from '../../model/loantype';
 import { LoanRequestService } from '../../service/loanrequests.service';
 import { LoanTypesService } from '../../service/loantypes.service';
 import { ConfigService } from "../../service/config.service";
 import { NewLoanRequest } from 'src/app/model/newloanrequest';
+import { CurrencyProxyPipe } from 'src/app/pipes/currency-proxy.pipe';
 
 @Component({
   selector: 'app-request-a-loan-simple',
@@ -33,7 +33,8 @@ export class RequestALoanSimpleComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _loanTypesService: LoanTypesService,
     private _loanRequestsService: LoanRequestService,
-    private _configService: ConfigService
+    private _configService: ConfigService,
+    private _currencyPipe: CurrencyProxyPipe
   ) {}
 
   ngOnInit() {
@@ -49,8 +50,9 @@ export class RequestALoanSimpleComponent implements OnInit {
 
     this.firstFormGroup = this._formBuilder.group({
       loanType: ['', Validators.required],
-      amount: ['', Validators.required]
+      amount: ['', [Validators.required, Validators.minLength(3)]]
     });
+
     this.secondFormGroup = this._formBuilder.group({
       knowledge: ['', [Validators.required, Validators.pattern("^yes$")]],
     });
@@ -80,8 +82,15 @@ export class RequestALoanSimpleComponent implements OnInit {
 
   goToStep2() {
     if(this.firstFormGroup.status == 'VALID'){
-      console.log(this.firstFormGroup.value);
-      this.step = 2;
+      if (this.amount < this.loanType.minAmount ) {
+        this.errors = "The desired amount is lower than the minimum amount ("+ this._currencyPipe.transform(this.loanType.minAmount) + ") of the selected loan type <b>"+ this.loanType.title +"</b>. You may want to choose another loan type.";
+      } else {
+          console.log(this.firstFormGroup.value);
+          this.step = 2;
+          this.errors = "";
+      }
+    } else {
+      this.errors = "Not all fields have been provided, all fields are required.";
     }
   }
 
@@ -89,6 +98,9 @@ export class RequestALoanSimpleComponent implements OnInit {
     if(this.secondFormGroup.status == 'VALID'){
       console.log(this.secondFormGroup.value);
       this.step = 3;
+      this.errors = "";
+    } else {
+      this.errors = "You must accept the knowledge clause.";
     }
   }
 
@@ -96,10 +108,14 @@ export class RequestALoanSimpleComponent implements OnInit {
     if(this.thirdFormGroup.status == 'VALID'){
       console.log(this.thirdFormGroup.value);
       this.step = 4;
+      this.errors = "";
+    } else {
+      this.errors = "Not all fields have been provided, all fields are required.";
     }
   }
 
   back() {
+    this.errors = "";
     this.step--;
   }
 
@@ -123,6 +139,7 @@ export class RequestALoanSimpleComponent implements OnInit {
           this.step = 5;
           this.submitted = true;
           this.requestId = data.id;
+          this.errors = "";
         },
         error => {
             this.errors = error

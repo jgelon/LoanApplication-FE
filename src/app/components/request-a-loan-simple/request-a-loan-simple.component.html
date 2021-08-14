@@ -112,20 +112,20 @@
               </div>
               <div class="form-group">
                 <label>Firstname</label>
-                <input type="text"  placeholder="Firstname" formControlName="firstname" required />
+                <input type="text"  placeholder="Firstname" formControlName="firstName" required />
                 <br/>
-                <div *ngIf="isValidInput3('firstname')" class="text-danger">
-                  <div *ngIf="thirdFormGroup.controls['firstname'].errors?.required">
+                <div *ngIf="isValidInput3('firstName')" class="text-danger">
+                  <div *ngIf="thirdFormGroup.controls['firstName'].errors?.required">
                     Firstname is required.
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label>Lastname</label>
-                <input type="text"  placeholder="Lastname" formControlName="lastname" required />
+                <input type="text"  placeholder="Lastname" formControlName="lastName" required />
                 <br/>
-                <div *ngIf="isValidInput3('lastname')" class="text-danger">
-                  <div *ngIf="thirdFormGroup.controls['lastname'].errors?.required">
+                <div *ngIf="isValidInput3('lastName')" class="text-danger">
+                  <div *ngIf="thirdFormGroup.controls['lastName'].errors?.required">
                     Lastname is required.
                   </div>
                 </div>
@@ -193,13 +193,13 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>Marital status</label>
-                <select formControlName="incometype" required>
+                <label>Income type</label>
+                <select formControlName="incomeType" required>
                     <option *ngFor="let type of incomeTypes" [value]="type">{{ type | titleCase }}</option>
                 </select>
                 <br/>
-                <div *ngIf="isValidInput3('incometype')" class="text-danger">
-                  <div *ngIf="thirdFormGroup.controls['incometype'].errors?.required">
+                <div *ngIf="isValidInput3('incomeType')" class="text-danger">
+                  <div *ngIf="thirdFormGroup.controls['incomeType'].errors?.required">
                     Income type is required.
                   </div>
                 </div>

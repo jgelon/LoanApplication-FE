@@ -58,15 +58,15 @@ export class RequestALoanSimpleComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       gender: ['', Validators.required],
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       dob: ['', Validators.required],
       address: ['', Validators.required],
       zipcode: ['', Validators.required],
       city: ['', Validators.required],
       income: ['', Validators.required],
       maritalStatus: ['', Validators.required],
-      incometype: ['', Validators.required]
+      incomeType: ['', Validators.required]
     });
     this._loanTypesService.findAll().subscribe(data => {
       this.loanTypes = data;
@@ -139,7 +139,7 @@ export class RequestALoanSimpleComponent implements OnInit {
       loanRequest.dob = this.thirdFormGroup.value.dob;
       loanRequest.income = this.thirdFormGroup.value.income;
       loanRequest.incomeType = this.thirdFormGroup.value.incomeType;
-      loanRequest.maritalStatus = this.thirdFormGroup.value.maritalstatus;
+      loanRequest.maritalStatus = this.thirdFormGroup.value.maritalStatus;
       loanRequest.loanTypeId = this.firstFormGroup.value.loanType.id;
       loanRequest.amount = this.firstFormGroup.value.amount;
       this._loanRequestsService.newRequest(loanRequest).subscribe(

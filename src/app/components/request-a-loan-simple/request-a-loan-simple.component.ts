@@ -58,15 +58,15 @@ export class RequestALoanSimpleComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       gender: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       dob: ['', Validators.required],
       address: ['', Validators.required],
       zipcode: ['', Validators.required],
       city: ['', Validators.required],
       income: ['', Validators.required],
       maritalStatus: ['', Validators.required],
-      incomeType: ['', Validators.required]
+      incometype: ['', Validators.required]
     });
     this._loanTypesService.findAll().subscribe(data => {
       this.loanTypes = data;
@@ -131,14 +131,14 @@ export class RequestALoanSimpleComponent implements OnInit {
   submit(){
       let loanRequest = new NewLoanRequest();
       loanRequest.gender = this.thirdFormGroup.value.gender;
-      loanRequest.firstName = this.thirdFormGroup.value.firstName;
-      loanRequest.lastName = this.thirdFormGroup.value.lastName;
+      loanRequest.firstName = this.thirdFormGroup.value.firstname;
+      loanRequest.lastName = this.thirdFormGroup.value.lastname;
       loanRequest.address = this.thirdFormGroup.value.address;
       loanRequest.zipcode = this.thirdFormGroup.value.zipcode;
       loanRequest.city = this.thirdFormGroup.value.city;
       loanRequest.dob = this.thirdFormGroup.value.dob;
       loanRequest.income = this.thirdFormGroup.value.income;
-      loanRequest.incomeType = this.thirdFormGroup.value.incomeType;
+      loanRequest.incomeType = this.thirdFormGroup.value.incometype;
       loanRequest.maritalStatus = this.thirdFormGroup.value.maritalStatus;
       loanRequest.loanTypeId = this.firstFormGroup.value.loanType.id;
       loanRequest.amount = this.firstFormGroup.value.amount;

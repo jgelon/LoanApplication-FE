@@ -21,8 +21,9 @@
     </div>
     <div class="col-lg-6 col-xl-4">
       <h3>Comments</h3>
-      <div class="card" *ngFor="let comment of comments">
-        <div class="card-body" id="comment-{{ comment.id }}">
+      <div class="card" *ngFor="let comment of comments" id="comment-{{ comment.id }}">
+        <h6 class="card-subtitle mb-2 text-muted">#{{ comment.id }}</h6>
+        <div class="card-body">
           {{ comment.text }}
         </div>
       </div>

@@ -4,6 +4,9 @@ import {LoanRequest} from "../../model/loanrequest";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {switchMap} from "rxjs/operators";
 import {Observable} from "rxjs/Observable";
+import { CommentsService } from 'src/app/service/comments.service';
+import { LoanComment } from 'src/app/model/loancomment';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-show-request',
@@ -12,18 +15,40 @@ import {Observable} from "rxjs/Observable";
 })
 export class ShowRequestComponent implements OnInit {
 
-  loanRequest$: Observable<LoanRequest>;
+  loanRequest: LoanRequest;
+  comments: LoanComment[];
+
+  commentForm: FormGroup;
 
   constructor(
     private _loanRequestsService: LoanRequestService,
+    private _commentService: CommentsService,
     private _route: ActivatedRoute,
+    private _formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
-    this.loanRequest$ = this._route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this._loanRequestsService.getRequest(params.get('id')!))
-    );
+    let loanId = this._route.snapshot.paramMap.get('id');
+    this._loanRequestsService.getRequest(loanId).subscribe(data => {
+      this.loanRequest = data;
+    });
+    this._commentService.findAll(loanId).subscribe(data => {
+      this.comments = data;
+    }); 
+
+    this.commentForm = this._formBuilder.group({
+      commenttext: ['', Validators.required]
+    });
+  }
+
+  submit() {
+    let loanComment = new LoanComment();
+    loanComment.requestId = this.loanRequest.id
+    loanComment.text = this.commentForm.value.commenttext;
+    this._commentService.post(loanComment).subscribe(data => {
+      this.comments.push(data);
+      this.commentForm.reset();
+    });    
   }
 
 }

@@ -1,22 +1,41 @@
 
-<div *ngIf="loanRequest$ | async as loanRequest">
+<div *ngIf="loanRequest">
   <h1>Loan Request #{{ loanRequest.id }}</h1>
 
-  <table>
-    <tr><td><strong>Loantype:</strong><td><td> {{ loanRequest.loanType.title }}</td></tr>
-    <tr><td><strong>Amount:</strong><td><td> {{ loanRequest.amount | currency }}</td></tr>
-    <tr><td><strong>Gender:</strong><td><td> {{ loanRequest.gender | titleCase }}</td></tr>
-    <tr><td><strong>Firstname:</strong><td><td> {{ loanRequest.firstName }}</td></tr>
-    <tr><td><strong>Lastname:</strong><td><td> {{ loanRequest.lastName }}</td></tr>
-    <tr><td><strong>Date of birth:</strong><td><td> {{ loanRequest.dob | date:'mediumDate' }}</td></tr>
-    <tr><td><strong>Address:</strong><td><td> {{ loanRequest.address }}</td></tr>
-    <tr><td><strong>Zipcode:</strong><td><td> {{ loanRequest.zipcode }}</td></tr>
-    <tr><td><strong>City:</strong><td><td> {{ loanRequest.city }}</td></tr>
-    <tr><td><strong>Income:</strong><td><td> {{ loanRequest.income }}</td></tr>
-    <tr><td><strong>Marital status:</strong><td><td> {{ loanRequest.maritalStatus | titleCase }}</td></tr>
-    <tr><td><strong>Income type:</strong><td><td> {{ loanRequest.incomeType | titleCase }}</td></tr>
-  </table>
+  <div class="row gx-5">
+    <div class="col-lg-6 col-xl-4">
+      <table>
+        <tr><td><strong>Loantype:</strong><td><td> {{ loanRequest.loanType.title }}</td></tr>
+        <tr><td><strong>Amount:</strong><td><td> {{ loanRequest.amount | currency }}</td></tr>
+        <tr><td><strong>Gender:</strong><td><td> {{ loanRequest.gender | titleCase }}</td></tr>
+        <tr><td><strong>Firstname:</strong><td><td> {{ loanRequest.firstName }}</td></tr>
+        <tr><td><strong>Lastname:</strong><td><td> {{ loanRequest.lastName }}</td></tr>
+        <tr><td><strong>Date of birth:</strong><td><td> {{ loanRequest.dob | date:'mediumDate' }}</td></tr>
+        <tr><td><strong>Address:</strong><td><td> {{ loanRequest.address }}</td></tr>
+        <tr><td><strong>Zipcode:</strong><td><td> {{ loanRequest.zipcode }}</td></tr>
+        <tr><td><strong>City:</strong><td><td> {{ loanRequest.city }}</td></tr>
+        <tr><td><strong>Income:</strong><td><td> {{ loanRequest.income }}</td></tr>
+        <tr><td><strong>Marital status:</strong><td><td> {{ loanRequest.maritalStatus | titleCase }}</td></tr>
+        <tr><td><strong>Income type:</strong><td><td> {{ loanRequest.incomeType | titleCase }}</td></tr>
+      </table>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+      <h3>Comments</h3>
+      <div class="card" *ngFor="let comment of comments">
+        <div class="card-body" id="comment-{{ comment.id }}">
+          {{ comment.text }}
+        </div>
+      </div>
 
+      <form [formGroup]='commentForm' novalidate class="form" (ngSubmit)='submit()'>
+        <div class="card">
+          <div class="card-body">
+            <textarea formControlName="commenttext" name="commenttext" rows="3"></textarea><br />
+            <button class="btn btn-info">Add comment</button>
+          </div>
+        </div>
+      </form>
+    </div>
 </div>
 
 <br />

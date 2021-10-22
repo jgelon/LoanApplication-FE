@@ -21,6 +21,7 @@ export class RequestcommentsComponent implements OnInit {
     username: null,
     password: null
   };
+  loginError= "";
 
   constructor(
     private _commentService: CommentsService,
@@ -31,16 +32,21 @@ export class RequestcommentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this._tokenStorage.getToken() != null;
     this.loanId = Number(this._route.snapshot.paramMap.get('id'));
-    this._commentService.findAll(this.loanId).subscribe(data => {
-      this.comments = data;
-    });
+    this.loadComments();
 
     this.commentForm = this._formBuilder.group({
       commenttext: ['', Validators.required]
     });
+  }
 
-    this.isLoggedIn = this._tokenStorage.getToken() != null;
+  loadComments() {
+    if(this.isLoggedIn) {
+      this._commentService.findAll(this.loanId).subscribe(data => {
+        this.comments = data;
+      });
+    }
   }
 
   submit() {
@@ -61,8 +67,11 @@ export class RequestcommentsComponent implements OnInit {
         this._tokenStorage.saveToken(data.jwttoken);
 
         this.isLoggedIn = true;
+        this.loadComments();
+        this.loginError = "";
       },
       err => {
+        this.loginError = "Failed to login";
       });
   }
 

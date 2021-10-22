@@ -8,6 +8,7 @@
     </div>
   </div>
 
+  <div class="alert alert-warning">This currently only works from the API</div>
   <form [formGroup]='commentForm' novalidate class="form" (ngSubmit)='submit()'>
     <div class="card">
       <div class="card-body">
@@ -23,6 +24,7 @@
 
 
 <div *ngIf="!isLoggedIn">
+  <div *ngIf="loginError != ''" class="alert alert-danger">{{loginError}}</div>
   <div class="alert alert-warning">You are not logged in, therefore comments are hidden!</div>
   <div class="alert alert-info">Username: <b>admin</b>, password: <b>admin</b></div>
 

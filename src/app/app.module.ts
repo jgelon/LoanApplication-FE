@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -29,8 +29,8 @@ import { RequestALoanMatdesignComponent } from './components/request-a-loan-matd
 import { MyTitleCasePipe } from './pipes/titlecase.pipe';
 import { RequestcommentsComponent } from './components/requestcomments/requestcomments.component';
 import { AuthService } from './service/auth.service';
-import { TokenStorageService } from './service/token-storage.service';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { TokenStorageService } from './service/token-storage.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,6 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     BrowserAnimationsModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'nl-NL' },
     authInterceptorProviders,
     LoanTypesService,
     LoanReasonsService,

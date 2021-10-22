@@ -23,21 +23,13 @@ export class ShowRequestComponent implements OnInit {
   constructor(
     private _loanRequestsService: LoanRequestService,
     private _commentService: CommentsService,
-    private _route: ActivatedRoute,
-    private _formBuilder: FormBuilder,
+    private _route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     let loanId = this._route.snapshot.paramMap.get('id');
     this._loanRequestsService.getRequest(loanId).subscribe(data => {
       this.loanRequest = data;
-    });
-    this._commentService.findAll(loanId).subscribe(data => {
-      this.comments = data;
-    }); 
-
-    this.commentForm = this._formBuilder.group({
-      commenttext: ['', Validators.required]
     });
   }
 
@@ -48,7 +40,7 @@ export class ShowRequestComponent implements OnInit {
     this._commentService.post(loanComment).subscribe(data => {
       this.comments.push(data);
       this.commentForm.reset();
-    });    
+    });
   }
 
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_URL } from '../constants/constants';
 import { LoanComment } from '../model/loancomment';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ import { LoanComment } from '../model/loancomment';
 export class CommentsService {
   commentUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(
+      private http: HttpClient,
+      private _tokenStorage: TokenStorageService
+    ) {
     this.commentUrl = BASE_URL + '/comments';
   }
 

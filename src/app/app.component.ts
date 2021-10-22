@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Loan Application';
+
+  clearStorage() {
+    window.sessionStorage.clear();
+    window.location.reload();
+  }
 }

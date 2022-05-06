@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.loginError = "";
         this._router.navigate(['list']);
       },
-      err => {
+      _err => {
         this.loginError = "Failed to login";
       });
   }

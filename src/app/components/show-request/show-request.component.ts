@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoanRequestService} from "../../service/loanrequests.service";
 import {LoanRequest} from "../../model/loanrequest";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import { CommentsService } from 'src/app/service/comments.service';
 import { LoanComment } from 'src/app/model/loancomment';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-show-request',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { LoanReason } from '../model/loanreason';
 import { Observable } from 'rxjs';
 import { BASE_URL } from '../constants/constants';

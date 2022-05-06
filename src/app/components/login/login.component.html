@@ -1,6 +1,6 @@
 <div *ngIf="!isLoggedIn">
   <div *ngIf="loginError != ''" class="alert alert-danger">{{loginError}}</div>
-  <div class="alert alert-info">Username: <b>admin</b>, password: <b>admin</b></div>
+  <div class="alert alert-info">Username: <strong>admin</strong>, password: <strong>admin</strong></div>
 
   <form name="loginForm" (ngSubmit)="f.form.valid && submitLogin()" #f="ngForm" novalidate>
     <div class="card">

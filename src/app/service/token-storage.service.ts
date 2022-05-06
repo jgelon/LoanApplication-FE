@@ -6,7 +6,6 @@ const TOKEN_KEY = 'auth-token';
   providedIn: 'root'
 })
 export class TokenStorageService {
-  constructor() { }
 
   signOut(): void {
     window.sessionStorage.clear();

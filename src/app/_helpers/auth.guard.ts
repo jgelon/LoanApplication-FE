@@ -8,16 +8,16 @@ import { TokenStorageService } from '../service/token-storage.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private tokenStorageService: TokenStorageService, private router: Router) {}
+  constructor(private _tokenStorageService: TokenStorageService, private _router: Router) {}
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(!!this.tokenStorageService.getToken()) {
+    _route: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    if(!!this._tokenStorageService.getToken()) {
       return true;
     }
 
-    return this.router.parseUrl('/login');
+    return this._router.parseUrl('/login');
   }
 
 }

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LoanRequest } from '../model/loanrequest';
-import { Observable } from 'rxjs';
 import { BASE_URL } from '../constants/constants';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NewLoanRequest } from '../model/newloanrequest';
 

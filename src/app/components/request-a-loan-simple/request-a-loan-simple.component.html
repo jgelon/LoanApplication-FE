@@ -55,7 +55,7 @@
                   <tr><td><strong>Loantype:</strong></td><td><span id="loanType">{{ loanType.title }}</span></td></tr>
                   <tr><td><strong>Amount:</strong></td><td><span id="loanAmount">{{ amount | currency }}</span></td></tr>
                 </table>
-      
+
                 <br/>
 
                 <label>
@@ -91,10 +91,10 @@
                   <button type="submit" class="btn btn-info" [disabled]="this.secondFormGroup.value.knowledge != 'yes'">Next</button>
                 </div>
             </form>
-  
+
         </div>
 
-        
+
         <div class="col-lg-12 col-xl-12" [hidden]="step!=3">
             <h3>Personal details</h3>
             <form [formGroup]="thirdFormGroup" (ngSubmit)='goToStep4()'>
@@ -211,7 +211,7 @@
                 </div>
               </div>
             </form>
-  
+
         </div>
 
         <div class="col-lg-12 col-xl-12" [hidden]="step!=4">
@@ -238,7 +238,7 @@
                   <button type="submit" class="btn btn-info">Request the loan</button>
                 </div>
             </form>
-  
+
         </div>
     </div>
 

@@ -1,5 +1,3 @@
-import { LoanType } from './loantype';
-
 export class NewLoanRequest {
     id: number;
     gender: string;

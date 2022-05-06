@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { LoanType } from '../../model/loantype';
 import { LoanRequestService } from '../../service/loanrequests.service';
 import { LoanTypesService } from '../../service/loantypes.service';

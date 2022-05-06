@@ -31,6 +31,7 @@ import { RequestcommentsComponent } from './components/requestcomments/requestco
 import { AuthService } from './service/auth.service';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { TokenStorageService } from './service/token-storage.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { TokenStorageService } from './service/token-storage.service';
     IndexComponent,
     RequestALoanMatdesignComponent,
     RequestALoanSimpleComponent,
-    RequestcommentsComponent
+    RequestcommentsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

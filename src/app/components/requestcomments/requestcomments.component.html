@@ -1,6 +1,6 @@
 <h3>Comments</h3>
 
-<div *ngIf="isLoggedIn">
+<div>
   <div class="card" *ngFor="let comment of comments" id="comment-{{ comment.id }}">
     <h6 class="card-subtitle mb-2 text-muted">#{{ comment.id }}</h6>
     <div class="card-body">
@@ -16,28 +16,8 @@
       </div>
     </div>
   </form>
-
-  <button class="btn btn-warning" (click)="logout()">Logout</button>
 </div>
 
 
-
-<div *ngIf="!isLoggedIn">
-  <div *ngIf="loginError != ''" class="alert alert-danger">{{loginError}}</div>
-  <div class="alert alert-warning">You are not logged in, therefore comments are hidden!</div>
-  <div class="alert alert-info">Username: <b>admin</b>, password: <b>admin</b></div>
-
-  <form name="loginForm" (ngSubmit)="f.form.valid && submitLogin()" #f="ngForm" novalidate>
-    <div class="card">
-      <div class="card-body">
-        <input type="text" class="form-control" name="username" placeholder="Username" [(ngModel)]="loginForm.username" required
-                #username="ngModel" />
-        <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="loginForm.password" required
-                #password="ngModel" />
-        <button class="btn btn-info">Login</button>
-      </div>
-    </div>
-  </form>
-</div>
 
 

@@ -32,6 +32,7 @@ import { AuthService } from './service/auth.service';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { TokenStorageService } from './service/token-storage.service';
 import { LoginComponent } from './components/login/login.component';
+import { LoandecisionComponent } from './components/loandecision/loandecision.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { LoginComponent } from './components/login/login.component';
     RequestALoanMatdesignComponent,
     RequestALoanSimpleComponent,
     RequestcommentsComponent,
-    LoginComponent
+    LoginComponent,
+    LoandecisionComponent
   ],
   imports: [
     BrowserModule,

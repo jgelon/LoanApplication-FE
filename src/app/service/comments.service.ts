@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BASE_URL } from '../constants/constants';
+import { environment } from 'src/environments/environment';
 import { LoanComment } from '../model/loancomment';
 import { TokenStorageService } from './token-storage.service';
 
@@ -15,7 +15,7 @@ export class CommentsService {
       private http: HttpClient,
       private _tokenStorage: TokenStorageService
     ) {
-    this.commentUrl = BASE_URL + '/comments';
+    this.commentUrl = environment.api + '/comments';
   }
 
   public findAll(id: any): Observable<LoanComment[]> {

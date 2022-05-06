@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoanReason } from '../model/loanreason';
 import { Observable } from 'rxjs';
-import { BASE_URL } from '../constants/constants';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class LoanReasonsService {
@@ -10,7 +10,7 @@ export class LoanReasonsService {
   private loansUrl: string;
 
   constructor(private http: HttpClient) {
-    this.loansUrl = BASE_URL + '/loanreasons/';
+    this.loansUrl = environment.api + '/loanreasons/';
   }
 
   public findAll(): Observable<LoanReason[]> {

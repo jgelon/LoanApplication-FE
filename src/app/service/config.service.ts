@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BASE_URL } from '../constants/constants';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ConfigService {
@@ -11,9 +11,9 @@ export class ConfigService {
   private incomeTypesUrl: string;
 
   constructor(private http: HttpClient) {
-    this.maritalStatusUrl = BASE_URL + '/config/maritalstatus';
-    this.gendersUrl = BASE_URL + '/config/genders';
-    this.incomeTypesUrl = BASE_URL + '/config/incometypes';
+    this.maritalStatusUrl = environment.api + '/config/maritalstatus';
+    this.gendersUrl = environment.api + '/config/genders';
+    this.incomeTypesUrl = environment.api + '/config/incometypes';
   }
 
   public maritalstatus(): Observable<string[]> {

@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthorityArea, AuthorityLevel } from '../constants/authority';
-import { BASE_URL } from '../constants/constants';
 import { Jwt } from '../model/jwt';
 import { TokenStorageService } from './token-storage.service';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class AuthService {
   ) { }
 
   login(username: string, password: string): Observable<Jwt> {
-    return this._http.post<Jwt>(BASE_URL + '/auth/login', {
+    return this._http.post<Jwt>(environment.api + '/auth/login', {
       username,
       password
     }, httpOptions);

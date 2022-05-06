@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LoanRequest } from '../model/loanrequest';
-import { BASE_URL } from '../constants/constants';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NewLoanRequest } from '../model/newloanrequest';
+import { environment } from 'src/environments/environment';
+
+const BASE_URL = environment.api;
 
 @Injectable()
 export class LoanRequestService {

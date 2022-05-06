@@ -14,10 +14,14 @@ export class LoanRequestService {
   private loansNewUrl: string;
   private loansGenerateUrl: string;
   private loansIdUrl: string;
+  private loanApproveUrl: string;
+  private loanDeclineUrl: string;
 
   constructor(private http: HttpClient) {
     this.loansUrl = BASE_URL + '/loanrequests/';
     this.loansIdUrl = BASE_URL + '/loanrequests/id/';
+    this.loanApproveUrl = BASE_URL + '/loanrequests/approve/';
+    this.loanDeclineUrl = BASE_URL + '/loanrequests/decline/';
     this.loansNewUrl = BASE_URL + '/loanrequests/new';
     this.loansGenerateUrl = BASE_URL + '/loanrequests/generate';
   }
@@ -38,6 +42,18 @@ export class LoanRequestService {
     return this.http.post<NewLoanRequest>(this.loansNewUrl, loanRequest).pipe(
               catchError(this.handleError)
             );
+  }
+
+  public approve(id: any) {
+    return this.http.post<LoanRequest>(this.loanApproveUrl + id, {}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  public decline(id: any) {
+    return this.http.post<LoanRequest>(this.loanDeclineUrl + id, {}).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

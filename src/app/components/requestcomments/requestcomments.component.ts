@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoanComment } from 'src/app/model/loancomment';
-import { AuthService } from 'src/app/service/auth.service';
 import { CommentsService } from 'src/app/service/comments.service';
-import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-requestcomments',
@@ -16,23 +14,14 @@ export class RequestcommentsComponent implements OnInit {
 
   commentForm: FormGroup;
   loanId: number;
-  isLoggedIn = false;
-  loginForm: any = {
-    username: null,
-    password: null
-  };
-  loginError= "";
 
   constructor(
     private _commentService: CommentsService,
     private _route: ActivatedRoute,
-    private _formBuilder: FormBuilder,
-    private _tokenStorage: TokenStorageService,
-    private _authService: AuthService
+    private _formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this._tokenStorage.getToken() != null;
     this.loanId = Number(this._route.snapshot.paramMap.get('id'));
     this.loadComments();
 
@@ -42,11 +31,9 @@ export class RequestcommentsComponent implements OnInit {
   }
 
   loadComments() {
-    if(this.isLoggedIn) {
-      this._commentService.findAll(this.loanId).subscribe(data => {
-        this.comments = data;
-      });
-    }
+    this._commentService.findAll(this.loanId).subscribe(data => {
+      this.comments = data;
+    });
   }
 
   submit() {
@@ -59,24 +46,4 @@ export class RequestcommentsComponent implements OnInit {
     });
   }
 
-  submitLogin() {
-    const { username, password } = this.loginForm;
-
-    this._authService.login(username, password).subscribe(
-      data => {
-        this._tokenStorage.saveToken(data.jwttoken);
-
-        this.isLoggedIn = true;
-        this.loadComments();
-        this.loginError = "";
-      },
-      err => {
-        this.loginError = "Failed to login";
-      });
-  }
-
-  logout() {
-    this._tokenStorage.signOut();
-    this.isLoggedIn = false;
-  }
 }

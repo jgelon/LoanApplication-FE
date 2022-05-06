@@ -14,4 +14,5 @@ export class LoanRequest {
     maritalStatus: string;
     loanType: LoanType;
     amount: number;
+    decision: string;
 }

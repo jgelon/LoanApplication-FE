@@ -1,3 +1,4 @@
+<app-login></app-login>
 
 <div *ngIf="loanRequest">
   <h1>Loan Request #{{ loanRequest.id }}</h1>
@@ -20,6 +21,7 @@
       </table>
     </div>
     <div class="col-lg-6 col-xl-4">
+      <app-loandecision [decision]="loanRequest.decision"></app-loandecision>
       <app-requestcomments></app-requestcomments>
     </div>
 </div>

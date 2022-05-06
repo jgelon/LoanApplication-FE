@@ -9,12 +9,12 @@
                 #username="ngModel" />
         <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="loginForm.password" required
                 #password="ngModel" />
-        <button class="btn btn-info">Login</button>
+        <button class="btn btn-info" id="login-button">Login</button>
       </div>
     </div>
   </form>
 </div>
 
 <div *ngIf="isLoggedIn" class="logout">
-  <button class="btn btn-warning" (click)="logout()">Logout</button>
+  <button class="btn btn-warning" (click)="logout()" id="logout-button">Logout</button>
 </div>

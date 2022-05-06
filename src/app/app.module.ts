@@ -26,13 +26,13 @@ import { ShowRequestComponent } from './components/show-request/show-request.com
 import { IndexComponent } from './components/index/index.component';
 import { RequestALoanSimpleComponent } from './components/request-a-loan-simple/request-a-loan-simple.component';
 import { RequestALoanMatdesignComponent } from './components/request-a-loan-matdesign/request-a-loan-matdesign.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoandecisionComponent } from './components/loandecision/loandecision.component';
 import { MyTitleCasePipe } from './pipes/titlecase.pipe';
 import { RequestcommentsComponent } from './components/requestcomments/requestcomments.component';
 import { AuthService } from './service/auth.service';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { TokenStorageService } from './service/token-storage.service';
-import { LoginComponent } from './components/login/login.component';
-import { LoandecisionComponent } from './components/loandecision/loandecision.component';
 
 @NgModule({
   declarations: [

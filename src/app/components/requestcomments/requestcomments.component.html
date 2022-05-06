@@ -8,7 +8,8 @@
     </div>
   </div>
 
-  <form [formGroup]='commentForm' novalidate class="form" (ngSubmit)='submit()'>
+  <div class="alert alert-info" *ngIf="!authorizedWrite">Comments can only be placed if you have Write permission</div>
+  <form [formGroup]='commentForm' novalidate class="form" (ngSubmit)='submit()' *ngIf="authorizedWrite">
     <div class="card">
       <div class="card-body">
         <textarea formControlName="commenttext" name="commenttext" rows="3"></textarea><br />

@@ -1,7 +1,7 @@
 <h3>Decision: {{decision}}</h3>
 
 <div class="card" *ngIf="decision == 'OPEN'">
-  <div class="card-body">
+  <div class="card-body" *ngIf="authorizedWrite">
     <button class="btn btn-success" (click)="approve()" id="approve">Approve</button>
     <button class="btn btn-danger" (click)="decline()" id="decline">Decline</button>
   </div>

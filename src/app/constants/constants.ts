@@ -1,3 +1,3 @@
-const BASE_URL = "https://loanapplication-be.azurewebsites.net";
+const BASE_URL = "http://localhost:8080";
 
 export { BASE_URL }

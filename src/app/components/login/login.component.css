@@ -3,4 +3,7 @@
   position: absolute;
   right: 10px;
   margin-top: -70px;
+  z-index: 999;
+  background-color: lightgray;
+  padding: 10px;
 }

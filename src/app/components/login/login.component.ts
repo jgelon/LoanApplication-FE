@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Jwt } from 'src/app/model/jwt';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
 
@@ -16,6 +17,9 @@ export class LoginComponent implements OnInit {
     password: null
   };
   loginError= "";
+  username: string;
+  authorities: string[];
+  hide_authorities = true;
 
   constructor(
     private _tokenStorage: TokenStorageService,
@@ -25,6 +29,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = this._tokenStorage.getToken() != null;
+
+    if(this.isLoggedIn) {
+      var jwt = this._tokenStorage.getJwt();
+      this.username = jwt.username;
+      this.authorities = jwt.authorities;
+    }
   }
 
 
@@ -33,7 +43,7 @@ export class LoginComponent implements OnInit {
 
     this._authService.login(username, password).subscribe(
       data => {
-        this._tokenStorage.saveToken(data.jwttoken);
+        this._tokenStorage.saveToken(data);
 
         this.isLoggedIn = true;
         this.loginError = "";
@@ -48,5 +58,9 @@ export class LoginComponent implements OnInit {
     this._tokenStorage.signOut();
     this.isLoggedIn = false;
     this._router.navigate(['login']);
+  }
+
+  toggleAuthorities() {
+    this.hide_authorities = !this.hide_authorities;
   }
 }

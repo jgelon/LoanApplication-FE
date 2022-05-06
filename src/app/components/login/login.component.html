@@ -1,6 +1,30 @@
 <div *ngIf="!isLoggedIn">
   <div *ngIf="loginError != ''" class="alert alert-danger">{{loginError}}</div>
-  <div class="alert alert-info">Username: <strong>admin</strong>, password: <strong>admin</strong></div>
+  <div class="alert alert-info">
+    Supported Credentials
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Access</th>
+          <th>Username</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>All Permissions</td>
+          <td>admin</td>
+          <td>admin</td>
+        </tr>
+        <tr>
+          <td>Read Permissions</td>
+          <td>reader</td>
+          <td>reader</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <form name="loginForm" (ngSubmit)="f.form.valid && submitLogin()" #f="ngForm" novalidate>
     <div class="card">
@@ -16,5 +40,9 @@
 </div>
 
 <div *ngIf="isLoggedIn" class="logout">
+  <span>Logged in as <strong>{{ username }}</strong></span><button class="btn btn-outline-primary  btn-sm" (click)="toggleAuthorities()">?</button><br />
+  <ul [hidden]="hide_authorities">
+    <li *ngFor="let authority of authorities" >{{authority}}</li>
+  </ul>
   <button class="btn btn-warning" (click)="logout()" id="logout-button">Logout</button>
 </div>

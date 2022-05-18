@@ -3,5 +3,11 @@
   "extends": [
     "config:base",
     "group:allNonMajor"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "stabilityDays": 7
+    }
   ]
 }

@@ -6,5 +6,6 @@ export enum AuthorityArea {
 export enum AuthorityLevel {
   READ = "READ",
   WRITE = "WRITE",
-  DELETE = "DELETE"
+  DELETE = "DELETE",
+  DELETE_ALL = "DELETE_ALL"
 }

@@ -45,6 +45,8 @@
   <div class="col-lg-6 col-xl-4">
     <p>
       <button mat-raised-button color="accent" [class.spinner]="loading" [disabled]="loading" (click)="generate()">Generate requesters</button>
+
+      <button mat-raised-button color="warn" *ngIf="isSuperAdmin" [class.spinner]="loading" [disabled]="loading"  (click)="deleteAll()">Delete All (no confirm!)</button>
     </p>
   </div>
 </div>

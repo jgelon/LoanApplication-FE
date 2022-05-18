@@ -17,6 +17,7 @@ export class LoanRequestService {
   private loansIdUrl: string;
   private loanApproveUrl: string;
   private loanDeclineUrl: string;
+  private loansDeleteAll: string;
 
   constructor(private http: HttpClient) {
     this.loansUrl = BASE_URL + '/loanrequests/';
@@ -25,6 +26,7 @@ export class LoanRequestService {
     this.loanDeclineUrl = BASE_URL + '/loanrequests/decline/';
     this.loansNewUrl = BASE_URL + '/loanrequests/new';
     this.loansGenerateUrl = BASE_URL + '/loanrequests/generate';
+    this.loansDeleteAll = BASE_URL + '/loanrequests/clear';
   }
 
   public findAll(): Observable<LoanRequest[]> {
@@ -53,6 +55,12 @@ export class LoanRequestService {
 
   public decline(id: any) {
     return this.http.post<LoanRequest>(this.loanDeclineUrl + id, {}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  public deleteAll() {
+    return this.http.post(this.loansDeleteAll, {}).pipe(
       catchError(this.handleError)
     );
   }

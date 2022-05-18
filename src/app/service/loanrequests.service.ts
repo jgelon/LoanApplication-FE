@@ -20,13 +20,13 @@ export class LoanRequestService {
   private loansDeleteAll: string;
 
   constructor(private http: HttpClient) {
-    this.loansUrl = BASE_URL + '/loanrequests/';
-    this.loansIdUrl = BASE_URL + '/loanrequests/id/';
-    this.loanApproveUrl = BASE_URL + '/loanrequests/approve/';
-    this.loanDeclineUrl = BASE_URL + '/loanrequests/decline/';
+    this.loansUrl = BASE_URL + '/loanrequests/admin/';
+    this.loansIdUrl = BASE_URL + '/loanrequests/admin/id/';
+    this.loanApproveUrl = BASE_URL + '/loanrequests/admin/approve/';
+    this.loanDeclineUrl = BASE_URL + '/loanrequests/admin/decline/';
     this.loansNewUrl = BASE_URL + '/loanrequests/new';
     this.loansGenerateUrl = BASE_URL + '/loanrequests/generate';
-    this.loansDeleteAll = BASE_URL + '/loanrequests/clear';
+    this.loansDeleteAll = BASE_URL + '/loanrequests/admin/clear';
   }
 
   public findAll(): Observable<LoanRequest[]> {

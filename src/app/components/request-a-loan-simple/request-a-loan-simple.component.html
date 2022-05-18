@@ -214,10 +214,11 @@
 
         </div>
 
-        <div class="col-lg-12 col-xl-12" [hidden]="step!=4">
+        <div class="col-lg-6 col-xl-6" [hidden]="step!=4">
             <h3>Verify your information</h3>
             <form (ngSubmit)='submit()'>
-                <table>
+                <table id="verifyTable" class="table">
+                  <tbody>
                     <tr><td><strong>Loantype:</strong></td><td> {{ loanType.title }}</td></tr>
                     <tr><td><strong>Amount:</strong></td><td> {{ amount | currency }}</td></tr>
                     <tr><td><strong>Acknowledgement:</strong></td><td> {{ this.secondFormGroup.value.knowledge }}</td></tr>
@@ -231,6 +232,7 @@
                     <tr><td><strong>Income:</strong></td><td> {{ this.thirdFormGroup.value.income }}</td></tr>
                     <tr><td><strong>Marital status:</strong></td><td> {{ this.thirdFormGroup.value.maritalStatus | titleCase }}</td></tr>
                     <tr><td><strong>Income type:</strong></td><td> {{ this.thirdFormGroup.value.incometype | titleCase }}</td></tr>
+                  </tbody>
                 </table>
 
                 <div class="stepNav">

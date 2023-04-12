@@ -10,7 +10,7 @@
 
     <div class="col-lg-12 col-xl-12" [hidden]="submitted">
 
-        <div class="col-lg-12 col-xl-12" [hidden]="step!=1">
+        <div class="col-lg-12 col-xl-12 step1" [hidden]="step!=1">
 
           <app-loantype-selection></app-loantype-selection>
 
@@ -42,13 +42,13 @@
               </div>
             </div>
             <div class="stepNav">
-                <button type="submit" class="btn btn-info">Next</button>
+                <button type="submit" class="btn btn-info" id="next1">Next</button>
             </div>
           </form>
 
         </div>
 
-        <div class="col-lg-12 col-xl-12" [hidden]="step!=2">
+        <div class="col-lg-12 col-xl-12 step2" [hidden]="step!=2">
             <h3>Acknowledgement</h3>
             <form [formGroup]="secondFormGroup" (ngSubmit)='goToStep3()'>
                 <table>
@@ -87,15 +87,15 @@
                 </div>
 
                 <div class="stepNav">
-                  <button type="button" class="btn btn-info" (click)="back()">Back</button>
-                  <button type="submit" class="btn btn-info" [disabled]="this.secondFormGroup.value.knowledge != 'yes'">Next</button>
+                  <button type="button" class="btn btn-info" (click)="back()" id="back2">Back</button>
+                  <button type="submit" class="btn btn-info" [disabled]="this.secondFormGroup.value.knowledge != 'yes'" id="next2">Next</button>
                 </div>
             </form>
 
         </div>
 
 
-        <div class="col-lg-12 col-xl-12" [hidden]="step!=3">
+        <div class="col-lg-12 col-xl-12 step3" [hidden]="step!=3">
             <h3>Personal details</h3>
             <form [formGroup]="thirdFormGroup" (ngSubmit)='goToStep4()'>
 
@@ -206,15 +206,15 @@
               </div>
               <div class="form-group">
                 <div class="stepNav">
-                  <button type="button" class="btn btn-info" (click)="back()">Back</button>
-                  <button type="submit" class="btn btn-info">Next</button>
+                  <button type="button" class="btn btn-info" (click)="back()" id="back3">Back</button>
+                  <button type="submit" class="btn btn-info" id="next3">Next</button>
                 </div>
               </div>
             </form>
 
         </div>
 
-        <div class="col-lg-6 col-xl-6" [hidden]="step!=4">
+        <div class="col-lg-6 col-xl-6 step4" [hidden]="step!=4">
             <h3>Verify your information</h3>
             <form (ngSubmit)='submit()'>
                 <table id="verifyTable" class="table">
@@ -236,8 +236,8 @@
                 </table>
 
                 <div class="stepNav">
-                  <button type="button" class="btn btn-info" (click)="back()">Back</button>
-                  <button type="submit" class="btn btn-info">Request the loan</button>
+                  <button type="button" class="btn btn-info" (click)="back()" id="back4">Back</button>
+                  <button type="submit" class="btn btn-info" id="requestBtn">Request the loan</button>
                 </div>
             </form>
 

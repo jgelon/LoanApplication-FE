@@ -48,7 +48,7 @@ jobs:
 
     - name: 'Deploy to Azure Web App'
       id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: 'LoanApplication'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_23d12c1a0bf04a40808e041de77d43be }}

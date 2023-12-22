@@ -1,1 +1,10 @@
 <p>This is a test application for automated testing</p>
+
+<div class="alert alert-warning" [hidden]="backendIsUp">
+    Backend service does not seem to be up, wait a few seconds if this is the first time you use the application. 
+    If this suddenly appears  alert the trainer.
+</div>
+
+<div class="alert alert-success" [hidden]="!backendIsUp">
+    Backend service is up and should be running properly. If not alert the trainer.
+</div>

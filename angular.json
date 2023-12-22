@@ -108,5 +108,8 @@
       }
     }
   },
-  "defaultProject": "loanapplication"
+  "defaultProject": "loanapplication",
+  "cli": {
+    "analytics": false
+  }
 }

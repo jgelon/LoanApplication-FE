@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'https://loanapplication-be.azurewebsites.net'
+  api: 'https://loanapplication-be.gmie.nl'
 };

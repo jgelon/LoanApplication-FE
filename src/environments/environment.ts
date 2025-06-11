@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'https://loanapplication-be.azurewebsites.net',
+  api: 'https://loanapplication-be.gmie.nl',
   //api: 'http://localhost:8080'
 };
 

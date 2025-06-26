@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './service/token-storage.service';
 import { environment } from 'src/environments/environment';
+import GravityCollector from '@smartesting/gravity-data-collector/dist';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     this.apiUrl = environment.api;
+
+    GravityCollector.init({
+      authKey: environment.gravityAuthKey
+    })
   }
 
   clearStorage() {

@@ -54,3 +54,12 @@
     <p class="m-0 text-center text-white"><button class="btn btn-outline-warning" (click)="clearStorage()">Clear local storage</button></p>
   </div>
 </footer>
+
+<script>
+  const script = document.querySelector('#logger')
+  script.addEventListener('load', function () {
+    window.GravityCollector.init({
+      authKey: "{{gravityAuthKey}}"
+    })
+  })
+</script>

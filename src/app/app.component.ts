@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = 'Loan Application';
   isLoggedIn = false;
   apiUrl: any;
+  gravityAuthKey: string = environment.gravityAuthKey;
 
   constructor(private tokenStorageService: TokenStorageService) { }
 

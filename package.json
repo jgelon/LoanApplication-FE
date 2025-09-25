@@ -21,7 +21,7 @@
     "@angular/platform-browser": "16.2.12",
     "@angular/platform-browser-dynamic": "16.2.12",
     "@angular/router": "16.2.12",
-    "@ng-bootstrap/ng-bootstrap": "15.1.2",
+    "@ng-bootstrap/ng-bootstrap": "19.0.1",
     "@popperjs/core": "2.11.8",
     "@smartesting/gravity-data-collector": "^8.2.1",
     "bootstrap": "5.3.6",
